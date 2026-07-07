@@ -1,0 +1,8 @@
+Create a game where you choose one of four heroes -true
+Each hero has its own stats -true
+Each hero has its own spell -true
+Each spell has special ability
+You can buy health, mana and damage potions with money that is earned for every round you win
+There can be small, medium and large potions
+You will play agains bots created by program
+Each of you will have turns where you can attack, cast spell or use one of the potions in the inventory
