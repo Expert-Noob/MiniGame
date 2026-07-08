@@ -6,13 +6,6 @@
 
 int main() {
 
-    Axe character;
-    character.PrintStats();
-    character.DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::BIG);
-    character.BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-    character.PrintInventory();
-    character.DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::BIG);
-    character.PrintInventory();
-    character.DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-    character.PrintInventory();
+    
+
 }

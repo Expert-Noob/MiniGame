@@ -1,14 +1,6 @@
 #include <iostream>
 #include "../include/Character.h"
 
-Character::Character(){
-        std::cout << "Character created" << '\n';
-}
-
-Character::~Character(){
-        std::cout << "Character destroyed" << '\n';
-}
-
 void Character::PrintStats(){
         std::cout << "Health: " << health << '\n';
         std::cout << "Mana: " << mana << '\n';
@@ -104,13 +96,8 @@ void Character::PrintInventory(){
 }
 
 Axe::Axe(){
-        std::cout << "Axe created" << '\n';
         health = maxhealth;
         mana = maxmana;
-}
-
-Axe::~Axe(){
-        std::cout << "Axe destroyed" << '\n';
 }
 
 int Axe::GetMaxHealth() const{
@@ -122,13 +109,8 @@ int Axe::GetMaxMana() const{
 }
 
 Lina::Lina(){
-        std::cout << "Lina created" << '\n';
         health = maxhealth;
         mana = maxmana;
-}
-
-Lina::~Lina(){
-        std::cout << "Lina destroyed" << '\n';
 }
 
 int Lina::GetMaxHealth() const{
@@ -140,13 +122,8 @@ int Lina::GetMaxMana() const{
 }
 
 Rubick::Rubick(){
-        std::cout << "Rubick created" << '\n';
         health = maxhealth;
         mana = maxmana;
-}
-
-Rubick::~Rubick(){
-        std::cout << "Rubick destroyed" << '\n';
 }
 
 int Rubick::GetMaxHealth() const{
@@ -158,13 +135,8 @@ int Rubick::GetMaxMana() const{
 }
 
 Ursa::Ursa(){
-        std::cout << "Ursa created" << '\n';
         health = maxhealth;
         mana = maxmana;
-}
-
-Ursa::~Ursa(){
-        std::cout << "Ursa destroyed" << '\n';
 }
 
 int Ursa::GetMaxHealth() const{

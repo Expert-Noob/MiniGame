@@ -21,10 +21,9 @@ protected:
     int health = 0;
     int mana = 0;
 public:
-    Character();
     virtual int GetMaxHealth() const = 0;
     virtual int GetMaxMana() const = 0;
-    virtual ~Character();
+    virtual ~Character() = default;
     void PrintStats();
     void DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize);
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
@@ -42,7 +41,6 @@ public:
     Axe();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
-    ~Axe();
 };
 
 class Lina : public Character{
@@ -56,7 +54,6 @@ public:
     Lina();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
-    ~Lina();
 };
 
 class Rubick : public Character{
@@ -70,7 +67,6 @@ public:
     Rubick();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
-    ~Rubick();
 };
 
 class Ursa : public Character{
@@ -84,5 +80,4 @@ public:
     Ursa();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
-    ~Ursa();
 };
