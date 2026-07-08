@@ -1,6 +1,14 @@
 #include <iostream>
 #include "../include/Character.h"
 
+Character::Character(){
+        std::cout << "Character created" << '\n';
+}
+
+Character::~Character(){
+        std::cout << "Character destroyed" << '\n';
+}
+
 void Character::PrintStats(){
         std::cout << "Health: " << health << '\n';
         std::cout << "Mana: " << mana << '\n';
@@ -22,19 +30,31 @@ void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize)
                 std::cout << "You dont have this potion" << '\n';
         }
         else{
+                inventory[static_cast<int>(potiontype)][yinventory] -= 1;
                 switch(potiontype){
                         case PotionType::HPPOTION:
                                 health += static_cast<int>(potionsize);
+                                if(health > GetMaxHealth()){
+                                        health = GetMaxHealth();
+                                }
                                 std::cout << "+" << static_cast<int>(potionsize) << " health" << '\n';
                                 break;
                         case PotionType::MANAPOTION:
                                 mana += static_cast<int>(potionsize);
+                                if(mana > GetMaxMana()){
+                                        mana = GetMaxMana();
+                                }
                                 std::cout << "+" << static_cast<int>(potionsize) << " mana" << '\n';
                                 break;
                         case PotionType::DAMAGEPOTION:
-                                damagemultiplier += static_cast<int>(potionsize);
-                                std::cout << "+" << static_cast<int>(potionsize) << " damage multiplier" << '\n';
-                                damagemultstate = true;
+                                if(damagemultstate){
+                                        std::cout << "You cant use another damage potion until you've attacked" << '\n';
+                                }
+                                else{
+                                        damagemultiplier += static_cast<int>(potionsize);
+                                        std::cout << "+" << static_cast<int>(potionsize) << " damage multiplier" << '\n';
+                                        damagemultstate = true;   
+                                }
                                 break;
                 }
         }
@@ -84,21 +104,73 @@ void Character::PrintInventory(){
 }
 
 Axe::Axe(){
+        std::cout << "Axe created" << '\n';
         health = maxhealth;
         mana = maxmana;
+}
+
+Axe::~Axe(){
+        std::cout << "Axe destroyed" << '\n';
+}
+
+int Axe::GetMaxHealth() const{
+        return maxhealth;
+}
+
+int Axe::GetMaxMana() const{
+        return maxmana;
 }
 
 Lina::Lina(){
+        std::cout << "Lina created" << '\n';
         health = maxhealth;
         mana = maxmana;
+}
+
+Lina::~Lina(){
+        std::cout << "Lina destroyed" << '\n';
+}
+
+int Lina::GetMaxHealth() const{
+        return maxhealth;
+}
+
+int Lina::GetMaxMana() const{
+        return maxmana;
 }
 
 Rubick::Rubick(){
+        std::cout << "Rubick created" << '\n';
         health = maxhealth;
         mana = maxmana;
 }
 
+Rubick::~Rubick(){
+        std::cout << "Rubick destroyed" << '\n';
+}
+
+int Rubick::GetMaxHealth() const{
+        return maxhealth;
+}
+
+int Rubick::GetMaxMana() const{
+        return maxmana;
+}
+
 Ursa::Ursa(){
+        std::cout << "Ursa created" << '\n';
         health = maxhealth;
         mana = maxmana;
+}
+
+Ursa::~Ursa(){
+        std::cout << "Ursa destroyed" << '\n';
+}
+
+int Ursa::GetMaxHealth() const{
+        return maxhealth;
+}
+
+int Ursa::GetMaxMana() const{
+        return maxmana;
 }

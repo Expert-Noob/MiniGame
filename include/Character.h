@@ -3,7 +3,7 @@
 
 class Character{
 private:
-    int money = 10;
+    int money = 100;
     int damagemultiplier = 100;
     bool damagemultstate = false;
 
@@ -13,7 +13,7 @@ private:
         //     HpPotion       ?      ?      ?
         // x:  ManaPotion     ?      ?      ?
         //     DamagePotion   ?      ?      ?
-        {0, 0, 0},
+        {0, 0, 1},
         {0, 0, 0},
         {0, 0, 0}
     };
@@ -21,6 +21,10 @@ protected:
     int health = 0;
     int mana = 0;
 public:
+    Character();
+    virtual int GetMaxHealth() const = 0;
+    virtual int GetMaxMana() const = 0;
+    virtual ~Character();
     void PrintStats();
     void DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize);
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
@@ -36,6 +40,9 @@ private:
     const int manacost = 50;
 public:
     Axe();
+    int GetMaxHealth() const override;
+    int GetMaxMana() const override;
+    ~Axe();
 };
 
 class Lina : public Character{
@@ -47,6 +54,9 @@ private:
     const int manacost = 150;
 public:
     Lina();
+    int GetMaxHealth() const override;
+    int GetMaxMana() const override;
+    ~Lina();
 };
 
 class Rubick : public Character{
@@ -58,6 +68,9 @@ private:
     const int manacost = 60;
 public:
     Rubick();
+    int GetMaxHealth() const override;
+    int GetMaxMana() const override;
+    ~Rubick();
 };
 
 class Ursa : public Character{
@@ -69,4 +82,7 @@ private:
     const int manacost = 35;
 public:
     Ursa();
+    int GetMaxHealth() const override;
+    int GetMaxMana() const override;
+    ~Ursa();
 };
