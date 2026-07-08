@@ -6,3 +6,5 @@ Character* InitializeCharacter();
 void PickPotion(Character* characterPtr);
 
 void BuyPotionFunc(Character* characterPtr);
+
+Character* InitializeBot();

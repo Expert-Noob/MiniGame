@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <random>
 #include "../include/Character.h"
 #include "../include/Print.h"
 
@@ -97,5 +98,37 @@ void BuyPotionFunc(Character* characterPtr){
         else{
             std::cout << "Invalid input!\n\nEnter again: ";
         }
+    }
+}
+
+Character* InitializeBot(){
+    Character* botPtr = nullptr;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(1, 4);
+
+    int random_num = distrib(gen);
+
+    if(random_num == 1){
+        botPtr = new Axe;
+        return botPtr;
+    }
+    else if(random_num == 2){
+        botPtr = new Lina;
+        return botPtr;
+    }
+    else if(random_num == 3){
+        botPtr = new Rubick;
+        return botPtr;
+    }
+    else if(random_num == 4){
+        botPtr = new Ursa;
+        return botPtr;
+    }
+    else{
+        std::cout << "Error!" << '\n';
+        botPtr = new Axe;
+        return botPtr;
     }
 }

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include "../include/Character.h"
 #include "../include/Print.h"
 #include "../include/Functions.h"
@@ -20,6 +19,12 @@ int main() {
     std::cout << '\n';
 
     BuyPotionFunc(character);
+    std::cout << '\n';
+
+    Character* bot = nullptr;
+    bot = InitializeBot();
+
+    bot->PrintStats();
 
     delete character;
 }
