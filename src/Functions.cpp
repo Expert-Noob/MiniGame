@@ -196,6 +196,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             characterPtr->PrintInventory();
             std::cout << '\n';
             DrinkPotionFunc(characterPtr);
+            characterPtr->PrintInventory();
             break;
         }
         else if(move == "skip"){
@@ -205,4 +206,8 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             std::cout << "Invalid input!\n\nEnter again: ";
         }
     }
+}
+
+void BotMove(Character* botPtr, Character* characterPtrToDamage){
+    botPtr->Attack(characterPtrToDamage);
 }

@@ -12,3 +12,5 @@ void BuyPotionFunc(Character* characterPtr);
 Character* InitializeBot();
 
 void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamage);
+
+void BotMove(Character* botPtr, Character* characterPtrToDamage);

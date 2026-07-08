@@ -23,6 +23,7 @@ protected:
 public:
     virtual int GetMaxHealth() const = 0;
     virtual int GetMaxMana() const = 0;
+    virtual int GetHealth() = 0;
     virtual void TakeHealth(int damage) = 0;
     virtual void TakeMana(int usedmana) = 0;
     virtual void Attack(Character* characterPtrToDamage) = 0;
@@ -33,6 +34,8 @@ public:
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
     void PrintInventory();
 };
+
+//Axe
 
 class Axe : public Character{
 private:
@@ -45,11 +48,14 @@ public:
     Axe();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
+    int GetHealth() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;
     void CastSpell(Character* characterPtrToDamage) override;
 };
+
+//Lina
 
 class Lina : public Character{
 private:
@@ -62,11 +68,14 @@ public:
     Lina();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
+    int GetHealth() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;
     void CastSpell(Character* characterPtrToDamage) override;
 };
+
+//Rubick
 
 class Rubick : public Character{
 private:
@@ -79,11 +88,14 @@ public:
     Rubick();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
+    int GetHealth() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;
     void CastSpell(Character* characterPtrToDamage) override;
 };
+
+//Ursa
 
 class Ursa : public Character{
 private:
@@ -96,6 +108,7 @@ public:
     Ursa();
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
+    int GetHealth() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;

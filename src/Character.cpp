@@ -113,6 +113,10 @@ int Axe::GetMaxMana() const{
         return maxmana;
 }
 
+int Axe::GetHealth(){
+        return health;
+}
+
 void Axe::TakeHealth(int damage){
         health -= damage;
         if(health < 0){
@@ -132,8 +136,13 @@ void Axe::Attack(Character* characterPtrToDamage){
 }
 
 void Axe::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(manacost > mana){
+                std::cout << "You dont have enough mana" << '\n';
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }
 
 //Lina
@@ -149,6 +158,10 @@ int Lina::GetMaxHealth() const{
 
 int Lina::GetMaxMana() const{
         return maxmana;
+}
+
+int Lina::GetHealth(){
+        return health;
 }
 
 void Lina::TakeHealth(int damage){
@@ -170,8 +183,13 @@ void Lina::Attack(Character* characterPtrToDamage){
 }
 
 void Lina::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(manacost > mana){
+                std::cout << "You dont have enough mana" << '\n';
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }
 
 //Rubick
@@ -187,6 +205,10 @@ int Rubick::GetMaxHealth() const{
 
 int Rubick::GetMaxMana() const{
         return maxmana;
+}
+
+int Rubick::GetHealth(){
+        return health;
 }
 
 void Rubick::TakeHealth(int damage){
@@ -208,8 +230,13 @@ void Rubick::Attack(Character* characterPtrToDamage){
 }
 
 void Rubick::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(manacost > mana){
+                std::cout << "You dont have enough mana" << '\n';
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }
 
 //Ursa
@@ -225,6 +252,10 @@ int Ursa::GetMaxHealth() const{
 
 int Ursa::GetMaxMana() const{
         return maxmana;
+}
+
+int Ursa::GetHealth(){
+        return health;
 }
 
 void Ursa::TakeHealth(int damage){
@@ -246,6 +277,11 @@ void Ursa::Attack(Character* characterPtrToDamage){
 }
 
 void Ursa::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(manacost > mana){
+                std::cout << "You dont have enough mana" << '\n';
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }

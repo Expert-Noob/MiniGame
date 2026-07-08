@@ -19,6 +19,9 @@ int main() {
     std::cout << '\n';
 
     while(true){
+        if(character->GetHealth() == 0){
+            break;
+        }
         BuyPotionFunc(character);
         std::cout << '\n';
     
@@ -30,9 +33,29 @@ int main() {
 
         std::cout << "Round 1\n" << '\n';
         std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
-        CheckAndPerformMove(character, bot);
-
-        delete bot;
+        while(true){
+            CheckAndPerformMove(character, bot);
+            std::cout << "Character stats:" << '\n';    
+            character->PrintStats();
+            std::cout << "Bot stats:" << '\n';
+            bot->PrintStats();
+            if(bot->GetHealth() == 0){
+                std::cout << "You won" << '\n';
+                delete bot;
+                break;
+            }
+            else if(character->GetHealth() == 0){
+                std::cout << "You lost" << '\n';
+                break;
+            }
+            else{
+                BotMove(bot, character);
+                std::cout << "Character stats:" << '\n';
+                character->PrintStats();
+                std::cout << "Bot stats:" << '\n';
+                bot->PrintStats();
+            }
+        }
     }
 
     delete character;
