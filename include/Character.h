@@ -3,12 +3,17 @@
 
 class Character{
 private:
-    int money = 100;
+    int money = 10;
     int damagemultiplier = 100;
     bool damagemultstate = false;
 
     int inventory[3][3] = {
-        {1, 0, 0},
+        //                          y:
+        //                  Small, Medium, Big
+        //     HpPotion       ?      ?      ?
+        // x:  ManaPotion     ?      ?      ?
+        //     DamagePotion   ?      ?      ?
+        {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0}
     };
@@ -18,6 +23,8 @@ protected:
 public:
     void PrintStats();
     void DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize);
+    void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
+    void PrintInventory();
 };
 
 class Axe : public Character{

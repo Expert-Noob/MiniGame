@@ -7,18 +7,18 @@ void Character::PrintStats(){
 }
 
 void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize){
-        int xinventory = 0;
+        int yinventory = 0;
         if(static_cast<int>(potionsize) == 25){
-                xinventory = 0;
+                yinventory = 0;
         }
         else if(static_cast<int>(potionsize) == 50){
-                xinventory = 1;
+                yinventory = 1;
         }
         else{
-                xinventory = 2;
+                yinventory = 2;
         }
 
-        if(inventory[xinventory][static_cast<int>(potiontype)] = 0){
+        if(inventory[static_cast<int>(potiontype)][yinventory] == 0){
                 std::cout << "You dont have this potion" << '\n';
         }
         else{
@@ -38,6 +38,49 @@ void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize)
                                 break;
                 }
         }
+}
+
+void Character::BuyPotion(PotionType potiontype, PotionCostAndSize potioncost){
+        int yinventory = 0;
+        if(static_cast<int>(potioncost) == 25){
+                yinventory = 0;
+        }
+        else if(static_cast<int>(potioncost) == 50){
+                yinventory = 1;
+        }
+        else{
+                yinventory = 2;
+        }
+        if(static_cast<int>(potioncost) > money){
+                std::cout << "You dont have enough money for this potion" << '\n';
+        }
+        else{
+                money -= static_cast<int>(potioncost);
+                inventory[static_cast<int>(potiontype)][yinventory] += 1;
+        }
+}
+
+void Character::PrintInventory(){
+        std::cout << "Inventory:" << '\n';
+        std::cout << "              Small  Medium  Big" << '\n';
+        for(int i = 0; i < 3; i++){
+                switch (i) {
+                        case 0:
+                                std::cout << "    Hp_Potion   ";
+                                break;
+                        case 1:
+                                std::cout << "  Mana_Potion   ";
+                                break;
+                        case 2:
+                                std::cout << "Damage_Potion   ";
+                                break;
+                }
+                for(int i2 = 0; i2 < 3; i2++){
+                        std::cout << inventory[i][i2] << "      ";
+                }
+                std::cout << '\n';
+        }
+        std::cout << '\n';
 }
 
 Axe::Axe(){
