@@ -18,15 +18,22 @@ int main() {
     character->PrintStats();
     std::cout << '\n';
 
-    BuyPotionFunc(character);
-    std::cout << '\n';
-
-    Character* bot = nullptr;
-    bot = InitializeBot();
-
-    bot->PrintStats();
-
+    while(true){
+        BuyPotionFunc(character);
+        std::cout << '\n';
     
+        Character* bot = nullptr;
+        bot = InitializeBot();
+    
+        bot->PrintStats();
+        std::cout << '\n';
+
+        std::cout << "Round 1\n" << '\n';
+        std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
+        CheckAndPerformMove(character, bot);
+
+        delete bot;
+    }
 
     delete character;
 }

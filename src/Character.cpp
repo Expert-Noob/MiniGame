@@ -96,6 +96,10 @@ void Character::PrintInventory(){
         std::cout << '\n';
 }
 
+//Subclass section
+
+//Axe
+
 Axe::Axe(){
         health = maxhealth;
         mana = maxmana;
@@ -108,6 +112,31 @@ int Axe::GetMaxHealth() const{
 int Axe::GetMaxMana() const{
         return maxmana;
 }
+
+void Axe::TakeHealth(int damage){
+        health -= damage;
+        if(health < 0){
+                health = 0;
+        }
+}
+
+void Axe::TakeMana(int usedmana){
+        mana -= usedmana;
+        if(mana < 0){
+                mana = 0;
+        }
+}
+
+void Axe::Attack(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(damage);
+}
+
+void Axe::CastSpell(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
+}
+
+//Lina
 
 Lina::Lina(){
         health = maxhealth;
@@ -122,6 +151,31 @@ int Lina::GetMaxMana() const{
         return maxmana;
 }
 
+void Lina::TakeHealth(int damage){
+        health -= damage;
+        if(health < 0){
+                health = 0;
+        }
+}
+
+void Lina::TakeMana(int usedmana){
+        mana -= usedmana;
+        if(mana < 0){
+                mana = 0;
+        }
+}
+
+void Lina::Attack(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(damage);
+}
+
+void Lina::CastSpell(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
+}
+
+//Rubick
+
 Rubick::Rubick(){
         health = maxhealth;
         mana = maxmana;
@@ -135,6 +189,31 @@ int Rubick::GetMaxMana() const{
         return maxmana;
 }
 
+void Rubick::TakeHealth(int damage){
+        health -= damage;
+        if(health < 0){
+                health = 0;
+        }
+}
+
+void Rubick::TakeMana(int usedmana){
+        mana -= usedmana;
+        if(mana < 0){
+                mana = 0;
+        }
+}
+
+void Rubick::Attack(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(damage);
+}
+
+void Rubick::CastSpell(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
+}
+
+//Ursa
+
 Ursa::Ursa(){
         health = maxhealth;
         mana = maxmana;
@@ -146,4 +225,27 @@ int Ursa::GetMaxHealth() const{
 
 int Ursa::GetMaxMana() const{
         return maxmana;
+}
+
+void Ursa::TakeHealth(int damage){
+        health -= damage;
+        if(health < 0){
+                health = 0;
+        }
+}
+
+void Ursa::TakeMana(int usedmana){
+        mana -= usedmana;
+        if(mana < 0){
+                mana = 0;
+        }
+}
+
+void Ursa::Attack(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(damage);
+}
+
+void Ursa::CastSpell(Character* characterPtrToDamage){
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
 }
