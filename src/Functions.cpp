@@ -181,8 +181,10 @@ Character* InitializeBot(){
 
 void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamage){
     while(true){
+        std::cout << "Enter: ";
         std::string move;
         std::cin >> move;
+        std::cout << '\n';
         if(move == "attack"){
             characterPtr->Attack(characterPtrToDamage);
             break;
@@ -191,11 +193,12 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             characterPtr->CastSpell(characterPtrToDamage);
             break;
         }
-        else if(move == "use potion"){
+        else if(move == "use_potion"){
             std::cout << "Which potion you want to use?" << '\n';
             characterPtr->PrintInventory();
-            std::cout << '\n';
+            std::cout << "Enter: ";
             DrinkPotionFunc(characterPtr);
+            std::cout << '\n';
             characterPtr->PrintInventory();
             break;
         }
@@ -210,4 +213,5 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
 
 void BotMove(Character* botPtr, Character* characterPtrToDamage){
     botPtr->Attack(characterPtrToDamage);
+    std::cout << "Bot Attacks\n" << '\n';
 }

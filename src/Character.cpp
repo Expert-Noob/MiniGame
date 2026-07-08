@@ -5,6 +5,7 @@ void Character::PrintStats(){
         std::cout << "Stats:" << '\n';
         std::cout << "Health: " << health << '\n';
         std::cout << "Mana: " << mana << '\n';
+        std::cout << '\n';
 }
 
 void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize){
