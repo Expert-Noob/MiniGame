@@ -6,6 +6,10 @@ void Character::PrintStats(){
         std::cout << "Mana: " << mana << '\n';
 }
 
+void Character::DrinkPotion(PotionSize potionsize){
+        std::cout << "True" << '\n';
+}
+
 Axe::Axe(){
         health = maxhealth;
         mana = maxmana;

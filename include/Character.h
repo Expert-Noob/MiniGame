@@ -1,4 +1,5 @@
 #pragma once
+#include "PotionSize.h"
 
 class Character{
 private:
@@ -8,6 +9,7 @@ protected:
     int mana = 0;
 public:
     void PrintStats();
+    void DrinkPotion(PotionSize potionsize);
 };
 
 class Axe : public Character{

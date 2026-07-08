@@ -6,6 +6,8 @@
 
 int main() {
 
-
+    Axe character;
+    character.PrintStats();
+    character.DrinkPotion(PotionSize::SMALL);
 
 }
