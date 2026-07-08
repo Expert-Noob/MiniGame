@@ -8,6 +8,6 @@ int main() {
 
     Axe character;
     character.PrintStats();
-    character.DrinkPotion(PotionSize::SMALL);
+    character.DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::SMALL);
 
 }
