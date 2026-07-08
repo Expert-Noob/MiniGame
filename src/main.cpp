@@ -26,5 +26,7 @@ int main() {
 
     bot->PrintStats();
 
+    
+
     delete character;
 }
