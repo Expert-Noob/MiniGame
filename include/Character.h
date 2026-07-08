@@ -13,7 +13,7 @@ private:
         //     HpPotion       ?      ?      ?
         // x:  ManaPotion     ?      ?      ?
         //     DamagePotion   ?      ?      ?
-        {0, 0, 1},
+        {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0}
     };

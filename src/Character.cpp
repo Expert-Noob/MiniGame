@@ -2,6 +2,7 @@
 #include "../include/Character.h"
 
 void Character::PrintStats(){
+        std::cout << "Stats:" << '\n';
         std::cout << "Health: " << health << '\n';
         std::cout << "Mana: " << mana << '\n';
 }
@@ -64,7 +65,7 @@ void Character::BuyPotion(PotionType potiontype, PotionCostAndSize potioncost){
                 yinventory = 2;
         }
         if(static_cast<int>(potioncost) > money){
-                std::cout << "You dont have enough money for this potion" << '\n';
+                std::cout << "You dont have enough money for this potion!" << '\n';
         }
         else{
                 money -= static_cast<int>(potioncost);
