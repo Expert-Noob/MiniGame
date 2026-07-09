@@ -220,6 +220,7 @@ void Character::PrintInventory(){
 
 Axe::Axe() : Character(200, 100, 20.0f, 30.0f, 50){
 }
+
 Lina::Lina() : Character(100, 150, 40.0f, 80.0f, 150) {
 }
 

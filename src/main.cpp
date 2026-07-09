@@ -31,7 +31,7 @@ int main() {
             std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
             CheckAndPerformMove(character, bot);
             character->PrintStatsBetter(bot);
-            
+
             if(bot->GetHealth() == 0){
                 std::cout << "You won\n" << '\n';
                 character->GiveMoney();
