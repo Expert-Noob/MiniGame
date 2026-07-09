@@ -251,7 +251,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
         else if(random_num == 2){
             if(botPtr->SpellManaCost() <= botPtr->GetMana()){
                 botPtr->CastSpell(characterPtrToDamage);
-                std::cout << "Bot casts spell" << '\n';
+                std::cout << "Bot casts spell\n" << '\n';
                 break;
             }
         }
