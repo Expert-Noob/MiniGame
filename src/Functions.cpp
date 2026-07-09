@@ -35,39 +35,39 @@ void PickPotion(Character* characterPtr){
     while(true){
         std::string itemname;
         std::cin >> itemname;
-        if(itemname == "Small_Hp_Potion"){
+        if(itemname == "Small_Hp_Potion" || itemname == "SHP"){
             characterPtr->BuyPotion(PotionType::HPPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Hp_Potion"){
+        else if(itemname == "Medium_Hp_Potion" || itemname == "MHP"){
             characterPtr->BuyPotion(PotionType::HPPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Hp_Potion"){
+        else if(itemname == "Big_Hp_Potion" || itemname == "BHP"){
             characterPtr->BuyPotion(PotionType::HPPOTION,PotionCostAndSize::BIG);
             break;
         }
-        else if(itemname == "Small_Mana_Potion"){
+        else if(itemname == "Small_Mana_Potion" || itemname == "SHP"){
             characterPtr->BuyPotion(PotionType::MANAPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Mana_Potion"){
+        else if(itemname == "Medium_Mana_Potion" || itemname == "MHP"){
             characterPtr->BuyPotion(PotionType::MANAPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Mana_Potion"){
+        else if(itemname == "Big_Mana_Potion" || itemname == "BHP"){
             characterPtr->BuyPotion(PotionType::MANAPOTION,PotionCostAndSize::BIG);
             break;
         }
-        else if(itemname == "Small_Damage_Potion"){
+        else if(itemname == "Small_Damage_Potion" || itemname == "SDP"){
             characterPtr->BuyPotion(PotionType::DAMAGEPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Damage_Potion"){
+        else if(itemname == "Medium_Damage_Potion" || itemname == "MDP"){
             characterPtr->BuyPotion(PotionType::DAMAGEPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Damage_Potion"){
+        else if(itemname == "Big_Damage_Potion" || itemname == "BDP"){
             characterPtr->BuyPotion(PotionType::DAMAGEPOTION,PotionCostAndSize::BIG);
             break;
         }
@@ -81,39 +81,39 @@ void DrinkPotionFunc(Character* characterPtr){
     while(true){
         std::string itemname;
         std::cin >> itemname;
-        if(itemname == "Small_Hp_Potion"){
+        if(itemname == "Small_Hp_Potion" || itemname == "SHP"){
             characterPtr->DrinkPotion(PotionType::HPPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Hp_Potion"){
+        else if(itemname == "Medium_Hp_Potion" || itemname == "MHP"){
             characterPtr->DrinkPotion(PotionType::HPPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Hp_Potion"){
+        else if(itemname == "Big_Hp_Potion" || itemname == "BHP"){
             characterPtr->DrinkPotion(PotionType::HPPOTION,PotionCostAndSize::BIG);
             break;
         }
-        else if(itemname == "Small_Mana_Potion"){
+        else if(itemname == "Small_Mana_Potion" || itemname == "SHP"){
             characterPtr->DrinkPotion(PotionType::MANAPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Mana_Potion"){
+        else if(itemname == "Medium_Mana_Potion" || itemname == "MHP"){
             characterPtr->DrinkPotion(PotionType::MANAPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Mana_Potion"){
+        else if(itemname == "Big_Mana_Potion" || itemname == "BHP"){
             characterPtr->DrinkPotion(PotionType::MANAPOTION,PotionCostAndSize::BIG);
             break;
         }
-        else if(itemname == "Small_Damage_Potion"){
+        else if(itemname == "Small_Damage_Potion" || itemname == "SDP"){
             characterPtr->DrinkPotion(PotionType::DAMAGEPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Damage_Potion"){
+        else if(itemname == "Medium_Damage_Potion" || itemname == "MDP"){
             characterPtr->DrinkPotion(PotionType::DAMAGEPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Damage_Potion"){
+        else if(itemname == "Big_Damage_Potion" || itemname == "BDP"){
             characterPtr->DrinkPotion(PotionType::DAMAGEPOTION,PotionCostAndSize::BIG);
             break;
         }
@@ -257,12 +257,14 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
         }
         else if(random_num == 3){
             if(botPtr->GetHealth() <= (botPtr->GetHealth()/2)){
+                std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::SMALL);
                 if(botPtr->BoolReturnForPotionPresent()){
                     break;
                 }
             }
             else if(botPtr->GetMana() <= (botPtr->GetMana()/2)){
+                std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
                 if(botPtr->BoolReturnForPotionPresent()){
                     break;
