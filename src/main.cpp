@@ -43,7 +43,7 @@ int main() {
                 BotMove(bot, character);
                 character->PrintStatsBetter(bot);
                 if(character->GetHealth() == 0){
-                    std::cout << "You lost" << '\n';
+                    std::cout << "You lost :(" << '\n';
                     break;
                 }
             }

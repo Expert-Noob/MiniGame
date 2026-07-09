@@ -5,6 +5,10 @@ void Character::GiveMoney(){
         money += 100;
 }
 
+int Character::GetMoney(){
+        return money;
+}
+
 void Character::PrintStats(){
         std::cout << "Stats:" << '\n';
         std::cout << "Health: " << health << '\n';
@@ -75,10 +79,11 @@ void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize)
                         case PotionType::DAMAGEPOTION:
                                 if(damagemultstate){
                                         std::cout << "You cant use another damage potion until you've attacked" << '\n';
+                                        IsPotionPresent = false;
                                 }
                                 else{
                                         damagemultiplier += static_cast<float>(potionsize);
-                                        std::cout << "+" << static_cast<int>(potionsize) << " damage multiplier" << '\n';
+                                        std::cout << "+" << (static_cast<int>(potionsize)/100) << " damage multiplier" << '\n';
                                         damagemultstate = true;   
                                 }
                                 break;
@@ -177,12 +182,29 @@ void Axe::TakeMana(int usedmana){
 }
 
 void Axe::Attack(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(damage);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(damage);
+        }
 }
 
 void Axe::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                TakeMana(manacost);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }
 
 //Lina
@@ -227,12 +249,29 @@ void Lina::TakeMana(int usedmana){
 }
 
 void Lina::Attack(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(damage);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(damage);
+        }
 }
 
 void Lina::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                TakeMana(manacost);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }
 
 //Rubick
@@ -277,12 +316,29 @@ void Rubick::TakeMana(int usedmana){
 }
 
 void Rubick::Attack(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(damage);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(damage);
+        }
 }
 
 void Rubick::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                TakeMana(manacost);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }
 
 //Ursa
@@ -327,10 +383,27 @@ void Ursa::TakeMana(int usedmana){
 }
 
 void Ursa::Attack(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(damage);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(damage);
+        }
 }
 
 void Ursa::CastSpell(Character* characterPtrToDamage){
-        characterPtrToDamage->TakeHealth(spelldamage);
-        TakeMana(manacost);
+        if(damagemultstate){
+                float damageSave = damage*(damagemultiplier/100.0f);
+                characterPtrToDamage->TakeHealth(damageSave);
+                TakeMana(manacost);
+                damagemultiplier = 100.0f;
+                damagemultstate = false;
+        }
+        else{
+                characterPtrToDamage->TakeHealth(spelldamage);
+                TakeMana(manacost);
+        }
 }

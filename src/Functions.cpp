@@ -125,6 +125,7 @@ void DrinkPotionFunc(Character* characterPtr){
 
 void BuyPotionFunc(Character* characterPtr){
     std::cout << "Do you want to buy something from the shop? (yes/no)\nEnter: ";
+    std::cout << "Money:" << characterPtr->GetMoney() << '\n';
     while(true){  
         std::string check;
         std::cin >> check;
@@ -205,8 +206,6 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             std::cout << "Enter: ";
             DrinkPotionFunc(characterPtr);
             if(characterPtr->BoolReturnForPotionPresent()){
-                std::cout << '\n';
-                characterPtr->PrintInventory();
                 break;
             }
             else{
