@@ -24,12 +24,15 @@ public:
     virtual int GetMaxHealth() const = 0;
     virtual int GetMaxMana() const = 0;
     virtual int GetHealth() = 0;
+    virtual int GetMana() = 0;
+    virtual int SpellManaCost() = 0;
     virtual void TakeHealth(int damage) = 0;
     virtual void TakeMana(int usedmana) = 0;
     virtual void Attack(Character* characterPtrToDamage) = 0;
     virtual void CastSpell(Character* characterPtrToDamage) = 0;
     virtual ~Character() = default;
     void PrintStats();
+    void PrintStatsBetter(Character* botPtr);
     void DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize);
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
     void PrintInventory();
@@ -49,6 +52,8 @@ public:
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
     int GetHealth() override;
+    int GetMana() override;
+    int SpellManaCost() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;
@@ -69,6 +74,8 @@ public:
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
     int GetHealth() override;
+    int GetMana() override;
+    int SpellManaCost() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;
@@ -89,6 +96,8 @@ public:
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
     int GetHealth() override;
+    int GetMana() override;
+    int SpellManaCost() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;
@@ -109,6 +118,8 @@ public:
     int GetMaxHealth() const override;
     int GetMaxMana() const override;
     int GetHealth() override;
+    int GetMana() override;
+    int SpellManaCost() override;
     void TakeHealth(int damage) override;
     void TakeMana(int usedmana) override;
     void Attack(Character* characterPtrToDamage) override;

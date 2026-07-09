@@ -190,8 +190,13 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             break;
         }
         else if(move == "cast_spell"){
-            characterPtr->CastSpell(characterPtrToDamage);
-            break;
+            if(characterPtr->SpellManaCost() > characterPtr->GetMana()){
+                std::cout << "You dont have enough mana\n" << '\n';
+            }
+            else{
+                characterPtr->CastSpell(characterPtrToDamage);
+                break;
+            }
         }
         else if(move == "use_potion"){
             std::cout << "Which potion you want to use?" << '\n';

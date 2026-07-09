@@ -8,6 +8,13 @@ void Character::PrintStats(){
         std::cout << '\n';
 }
 
+void Character::PrintStatsBetter(Character* botPtr){
+        std::cout << "Character stats:   Bot stats:" << '\n';
+        std::cout << "Health: " << health << "        Health:" << botPtr->GetHealth() << '\n';
+        std::cout << "Mana: " << mana << "          Mana:" << botPtr->GetMana() << '\n';
+        std::cout << '\n';
+}
+
 void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize){
         int yinventory = 0;
         if(static_cast<int>(potionsize) == 25){
@@ -118,6 +125,14 @@ int Axe::GetHealth(){
         return health;
 }
 
+int Axe::GetMana(){
+        return mana;
+}
+
+int Axe::SpellManaCost(){
+        return manacost;
+}
+
 void Axe::TakeHealth(int damage){
         health -= damage;
         if(health < 0){
@@ -137,13 +152,8 @@ void Axe::Attack(Character* characterPtrToDamage){
 }
 
 void Axe::CastSpell(Character* characterPtrToDamage){
-        if(manacost > mana){
-                std::cout << "You dont have enough mana" << '\n';
-        }
-        else{
-                characterPtrToDamage->TakeHealth(spelldamage);
-                TakeMana(manacost);
-        }
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
 }
 
 //Lina
@@ -165,6 +175,14 @@ int Lina::GetHealth(){
         return health;
 }
 
+int Lina::GetMana(){
+        return mana;
+}
+
+int Lina::SpellManaCost(){
+        return manacost;
+}
+
 void Lina::TakeHealth(int damage){
         health -= damage;
         if(health < 0){
@@ -184,13 +202,8 @@ void Lina::Attack(Character* characterPtrToDamage){
 }
 
 void Lina::CastSpell(Character* characterPtrToDamage){
-        if(manacost > mana){
-                std::cout << "You dont have enough mana" << '\n';
-        }
-        else{
-                characterPtrToDamage->TakeHealth(spelldamage);
-                TakeMana(manacost);
-        }
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
 }
 
 //Rubick
@@ -212,6 +225,14 @@ int Rubick::GetHealth(){
         return health;
 }
 
+int Rubick::GetMana(){
+        return mana;
+}
+
+int Rubick::SpellManaCost(){
+        return manacost;
+}
+
 void Rubick::TakeHealth(int damage){
         health -= damage;
         if(health < 0){
@@ -231,13 +252,8 @@ void Rubick::Attack(Character* characterPtrToDamage){
 }
 
 void Rubick::CastSpell(Character* characterPtrToDamage){
-        if(manacost > mana){
-                std::cout << "You dont have enough mana" << '\n';
-        }
-        else{
-                characterPtrToDamage->TakeHealth(spelldamage);
-                TakeMana(manacost);
-        }
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
 }
 
 //Ursa
@@ -259,6 +275,14 @@ int Ursa::GetHealth(){
         return health;
 }
 
+int Ursa::GetMana(){
+        return mana;
+}
+
+int Ursa::SpellManaCost(){
+        return manacost;
+}
+
 void Ursa::TakeHealth(int damage){
         health -= damage;
         if(health < 0){
@@ -278,11 +302,6 @@ void Ursa::Attack(Character* characterPtrToDamage){
 }
 
 void Ursa::CastSpell(Character* characterPtrToDamage){
-        if(manacost > mana){
-                std::cout << "You dont have enough mana" << '\n';
-        }
-        else{
-                characterPtrToDamage->TakeHealth(spelldamage);
-                TakeMana(manacost);
-        }
+        characterPtrToDamage->TakeHealth(spelldamage);
+        TakeMana(manacost);
 }
