@@ -67,14 +67,14 @@ void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize)
                                 if(health > GetMaxHealth()){
                                         health = GetMaxHealth();
                                 }
-                                std::cout << "+" << static_cast<int>(potionsize) << " health" << '\n';
+                                std::cout << "+" << static_cast<int>(potionsize) << " health\n" << '\n';
                                 break;
                         case PotionType::MANAPOTION:
                                 mana += static_cast<int>(potionsize);
                                 if(mana > GetMaxMana()){
                                         mana = GetMaxMana();
                                 }
-                                std::cout << "+" << static_cast<int>(potionsize) << " mana" << '\n';
+                                std::cout << "+" << static_cast<int>(potionsize) << " mana\n" << '\n';
                                 break;
                         case PotionType::DAMAGEPOTION:
                                 if(damagemultstate){
