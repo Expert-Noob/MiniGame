@@ -44,6 +44,7 @@ int main() {
                 character->PrintStatsBetter(bot);
                 if(character->GetHealth() == 0){
                     std::cout << "You lost :(" << '\n';
+                    delete bot;
                     break;
                 }
             }

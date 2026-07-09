@@ -5,7 +5,7 @@ void printAllCharacters(){
     std::cout << "Health:200          Health:100           Health:150           Health:175" << '\n';
     std::cout << "Mana:100            Mana:150             Mana:200             Mana:125" << '\n';
     std::cout << "Damage:20           Damage:40            Damage:10            Damage:30" << '\n';
-    std::cout << "SpellDamage:10x5    SpellDamage:80       SpellDamage:50       SpellDamage:40" << '\n';
+    std::cout << "SpellDamage:30      SpellDamage:80       SpellDamage:50       SpellDamage:40" << '\n';
     std::cout << "ManaCost:50         ManaCost:150         ManaCost:60          ManaCost:35" << '\n';
 }
 

@@ -47,15 +47,15 @@ void PickPotion(Character* characterPtr){
             characterPtr->BuyPotion(PotionType::HPPOTION,PotionCostAndSize::BIG);
             break;
         }
-        else if(itemname == "Small_Mana_Potion" || itemname == "SHP"){
+        else if(itemname == "Small_Mana_Potion" || itemname == "SMP"){
             characterPtr->BuyPotion(PotionType::MANAPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Mana_Potion" || itemname == "MHP"){
+        else if(itemname == "Medium_Mana_Potion" || itemname == "MMP"){
             characterPtr->BuyPotion(PotionType::MANAPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Mana_Potion" || itemname == "BHP"){
+        else if(itemname == "Big_Mana_Potion" || itemname == "BMP"){
             characterPtr->BuyPotion(PotionType::MANAPOTION,PotionCostAndSize::BIG);
             break;
         }
@@ -93,15 +93,15 @@ void DrinkPotionFunc(Character* characterPtr){
             characterPtr->DrinkPotion(PotionType::HPPOTION,PotionCostAndSize::BIG);
             break;
         }
-        else if(itemname == "Small_Mana_Potion" || itemname == "SHP"){
+        else if(itemname == "Small_Mana_Potion" || itemname == "SMP"){
             characterPtr->DrinkPotion(PotionType::MANAPOTION,PotionCostAndSize::SMALL);
             break;
         }
-        else if(itemname == "Medium_Mana_Potion" || itemname == "MHP"){
+        else if(itemname == "Medium_Mana_Potion" || itemname == "MMP"){
             characterPtr->DrinkPotion(PotionType::MANAPOTION,PotionCostAndSize::MEDIUM);
             break;
         }
-        else if(itemname == "Big_Mana_Potion" || itemname == "BHP"){
+        else if(itemname == "Big_Mana_Potion" || itemname == "BMP"){
             characterPtr->DrinkPotion(PotionType::MANAPOTION,PotionCostAndSize::BIG);
             break;
         }

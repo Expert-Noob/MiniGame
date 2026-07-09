@@ -49,8 +49,8 @@ class Axe : public Character{
 private:
     const int maxhealth = 200;
     const int maxmana = 100;
-    const float damage = 20.f;
-    const float spelldamage = 10.0f;
+    const float damage = 20.0f;
+    const float spelldamage = 30.0f;
     const int manacost = 50;
 public:
     Axe();
