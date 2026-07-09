@@ -83,7 +83,7 @@ void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize)
                                 }
                                 else{
                                         damagemultiplier += static_cast<float>(potionsize);
-                                        std::cout << "+" << (static_cast<int>(potionsize)/100) << " damage multiplier" << '\n';
+                                        std::cout << "+" << (static_cast<float>(potionsize)/100.0f) << " damage multiplier\n" << '\n';
                                         damagemultstate = true;   
                                 }
                                 break;
@@ -195,7 +195,7 @@ void Axe::Attack(Character* characterPtrToDamage){
 
 void Axe::CastSpell(Character* characterPtrToDamage){
         if(damagemultstate){
-                float damageSave = damage*(damagemultiplier/100.0f);
+                float damageSave = spelldamage*(damagemultiplier/100.0f);
                 characterPtrToDamage->TakeHealth(damageSave);
                 TakeMana(manacost);
                 damagemultiplier = 100.0f;
@@ -262,7 +262,7 @@ void Lina::Attack(Character* characterPtrToDamage){
 
 void Lina::CastSpell(Character* characterPtrToDamage){
         if(damagemultstate){
-                float damageSave = damage*(damagemultiplier/100.0f);
+                float damageSave = spelldamage*(damagemultiplier/100.0f);
                 characterPtrToDamage->TakeHealth(damageSave);
                 TakeMana(manacost);
                 damagemultiplier = 100.0f;
@@ -329,7 +329,7 @@ void Rubick::Attack(Character* characterPtrToDamage){
 
 void Rubick::CastSpell(Character* characterPtrToDamage){
         if(damagemultstate){
-                float damageSave = damage*(damagemultiplier/100.0f);
+                float damageSave = spelldamage*(damagemultiplier/100.0f);
                 characterPtrToDamage->TakeHealth(damageSave);
                 TakeMana(manacost);
                 damagemultiplier = 100.0f;
@@ -396,7 +396,7 @@ void Ursa::Attack(Character* characterPtrToDamage){
 
 void Ursa::CastSpell(Character* characterPtrToDamage){
         if(damagemultstate){
-                float damageSave = damage*(damagemultiplier/100.0f);
+                float damageSave = spelldamage*(damagemultiplier/100.0f);
                 characterPtrToDamage->TakeHealth(damageSave);
                 TakeMana(manacost);
                 damagemultiplier = 100.0f;

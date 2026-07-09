@@ -124,8 +124,9 @@ void DrinkPotionFunc(Character* characterPtr){
 }
 
 void BuyPotionFunc(Character* characterPtr){
-    std::cout << "Do you want to buy something from the shop? (yes/no)\nEnter: ";
+    std::cout << "Do you want to buy something from the shop? (yes/no)" << '\n';;
     std::cout << "Money:" << characterPtr->GetMoney() << '\n';
+    std::cout << "Enter: ";
     while(true){  
         std::string check;
         std::cin >> check;
@@ -159,18 +160,30 @@ Character* InitializeBot(){
 
     if(random_num == 1){
         botPtr = new Axe;
+        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         return botPtr;
     }
     else if(random_num == 2){
         botPtr = new Lina;
+        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         return botPtr;
     }
     else if(random_num == 3){
         botPtr = new Rubick;
+        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         return botPtr;
     }
     else if(random_num == 4){
         botPtr = new Ursa;
+        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         return botPtr;
     }
     else{
@@ -223,6 +236,41 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
 }
 
 void BotMove(Character* botPtr, Character* characterPtrToDamage){
-    botPtr->Attack(characterPtrToDamage);
-    std::cout << "Bot Attacks\n" << '\n';
+    while(true){
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> distrib(1, 3);
+    
+        int random_num = distrib(gen);
+        
+        if(random_num == 1){
+            botPtr->Attack(characterPtrToDamage);
+            std::cout << "Bot Attacks\n" << '\n';
+            break;
+        }
+        else if(random_num == 2){
+            if(botPtr->SpellManaCost() <= botPtr->GetMana()){
+                botPtr->CastSpell(characterPtrToDamage);
+                std::cout << "Bot casts spell" << '\n';
+                break;
+            }
+        }
+        else if(random_num == 3){
+            if(botPtr->GetHealth() <= (botPtr->GetHealth()/2)){
+                botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::SMALL);
+                if(botPtr->BoolReturnForPotionPresent()){
+                    break;
+                }
+            }
+            else if(botPtr->GetMana() <= (botPtr->GetMana()/2)){
+                botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+                if(botPtr->BoolReturnForPotionPresent()){
+                    break;
+                }
+            }
+        }
+        else{
+            std::cout << "Error";
+        }
+    }
 }

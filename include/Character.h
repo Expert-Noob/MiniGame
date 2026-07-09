@@ -32,6 +32,7 @@ public:
     virtual void Attack(Character* characterPtrToDamage) = 0;
     virtual void CastSpell(Character* characterPtrToDamage) = 0;
     virtual ~Character() = default;
+    
     void GiveMoney();
     int GetMoney();
     void PrintStats();
