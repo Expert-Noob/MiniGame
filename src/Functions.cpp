@@ -256,14 +256,14 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
             }
         }
         else if(random_num == 3){
-            if(botPtr->GetHealth() <= (botPtr->GetHealth()/2)){
+            if(botPtr->GetHealth() <= (botPtr->GetMaxHealth()/2)){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
                 if(botPtr->BoolReturnForPotionPresent()){
                     break;
                 }
             }
-            else if(botPtr->GetMana() <= (botPtr->GetMana()/2)){
+            else if(botPtr->GetMana() <= (botPtr->GetMaxMana()/2)){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
                 if(botPtr->BoolReturnForPotionPresent()){
