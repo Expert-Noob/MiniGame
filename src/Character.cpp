@@ -217,15 +217,3 @@ void Character::PrintInventory(){
         }
         std::cout << '\n';
 }
-
-Axe::Axe() : Character(200, 100, 20.0f, 30.0f, 50){
-}
-
-Lina::Lina() : Character(100, 150, 40.0f, 80.0f, 150) {
-}
-
-Rubick::Rubick() : Character(150, 200, 10.0f, 50.0f, 60) {
-}
-
-Ursa::Ursa() : Character(175, 125, 30.0f, 40.0f, 35) {
-}

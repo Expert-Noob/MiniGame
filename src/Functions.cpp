@@ -10,19 +10,19 @@ Character* InitializeCharacter(){
         std::string choose;
         std::cin >> choose;
         if(choose == "Axe"){
-            characterPtr = new Axe;
+            characterPtr = new Character(200, 100, 20.0f, 30.0f, 50);
             return characterPtr;
         }
         else if(choose == "Lina"){
-            characterPtr = new Lina;
+            characterPtr = new Character(100, 150, 40.0f, 80.0f, 150);
             return characterPtr;
         }
         else if(choose == "Rubick"){
-            characterPtr = new Rubick;
+            characterPtr = new Character(150, 200, 10.0f, 50.0f, 60);
             return characterPtr;
         }
         else if(choose == "Ursa"){
-            characterPtr = new Ursa;
+            characterPtr = new Character(175, 125, 30.0f, 40.0f, 35);
             return characterPtr;
         }
         else{
@@ -159,28 +159,28 @@ Character* InitializeBot(){
     int random_num = distrib(gen);
 
     if(random_num == 1){
-        botPtr = new Axe;
+        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
         botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         return botPtr;
     }
     else if(random_num == 2){
-        botPtr = new Lina;
+        botPtr = new Character(100, 150, 40.0f, 80.0f, 150);
         botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         return botPtr;
     }
     else if(random_num == 3){
-        botPtr = new Rubick;
+        botPtr = new Character(150, 200, 10.0f, 50.0f, 60);
         botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         return botPtr;
     }
     else if(random_num == 4){
-        botPtr = new Ursa;
+        botPtr = new Character(175, 125, 30.0f, 40.0f, 35);
         botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
         botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
@@ -188,7 +188,7 @@ Character* InitializeBot(){
     }
     else{
         std::cout << "Error!" << '\n';
-        botPtr = new Axe;
+        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
         return botPtr;
     }
 }

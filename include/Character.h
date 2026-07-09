@@ -30,7 +30,6 @@ protected:
 public:
 
     Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost);
-    virtual ~Character() = default;
 
     int GetMaxHealth() const;
     int GetMaxMana() const;
@@ -51,26 +50,4 @@ public:
     bool BoolReturnForPotionPresent();
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
     void PrintInventory();
-};
-
-//subclasses
-
-class Axe : public Character{
-public:
-    Axe();
-};
-
-class Lina : public Character{
-public:
-    Lina();
-};
-
-class Rubick : public Character{
-public:
-    Rubick();
-};
-
-class Ursa : public Character{
-public:
-    Ursa();
 };
