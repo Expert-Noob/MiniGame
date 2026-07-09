@@ -32,15 +32,16 @@ public:
     Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost);
     virtual ~Character() = default;
 
-    virtual int GetMaxHealth() const;
-    virtual int GetMaxMana() const;
-    virtual int GetHealth();
-    virtual int GetMana();
-    virtual int SpellManaCost();
-    virtual void TakeHealth(int damage);
-    virtual void TakeMana(int usedmana);
-    virtual void Attack(Character* characterPtrToDamage);
-    virtual void CastSpell(Character* characterPtrToDamage);
+    int GetMaxHealth() const;
+    int GetMaxMana() const;
+    int GetHealth();
+    int GetMana();
+    int GetSpellManaCost();
+    bool GetInvenotrySlotValueForBot(PotionType potiontype, PotionCostAndSize potionsize);
+    void TakeHealth(int damage);
+    void TakeMana(int usedmana);
+    void Attack(Character* characterPtrToDamage);
+    void CastSpell(Character* characterPtrToDamage);
     
     void GiveMoney();
     int GetMoney();

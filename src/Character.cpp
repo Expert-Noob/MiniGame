@@ -23,8 +23,22 @@ int Character::GetHealth(){
 int Character::GetMana(){
         return mana;
 }
-int Character::SpellManaCost(){
+int Character::GetSpellManaCost(){
         return manacost;
+}
+
+bool Character::GetInvenotrySlotValueForBot(PotionType potiontype, PotionCostAndSize potionsize){
+        int yinventory = 0;
+        if(static_cast<int>(potionsize) == 25){
+                yinventory = 0;
+        }
+        else if(static_cast<int>(potionsize) == 50){
+                yinventory = 1;
+        }
+        else{
+                yinventory = 2;
+        }
+        return inventory[static_cast<int>(potiontype)][yinventory];
 }
 
 void Character::TakeHealth(int damage){

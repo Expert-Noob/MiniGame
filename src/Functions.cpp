@@ -204,7 +204,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             break;
         }
         else if(move == "cast_spell"){
-            if(characterPtr->SpellManaCost() > characterPtr->GetMana()){
+            if(characterPtr->GetSpellManaCost() > characterPtr->GetMana()){
                 std::cout << "You dont have enough mana\n" << '\n';
                 std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
             }
@@ -249,21 +249,21 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
             break;
         }
         else if(random_num == 2){
-            if(botPtr->SpellManaCost() <= botPtr->GetMana()){
+            if(botPtr->GetSpellManaCost() <= botPtr->GetMana()){
                 botPtr->CastSpell(characterPtrToDamage);
                 std::cout << "Bot casts spell\n" << '\n';
                 break;
             }
         }
         else if(random_num == 3){
-            if(botPtr->GetHealth() <= (botPtr->GetMaxHealth()/2)){
+            if(botPtr->GetHealth() <= (botPtr->GetMaxHealth()/2) || botPtr->GetInvenotrySlotValueForBot(PotionType::HPPOTION, PotionCostAndSize::MEDIUM) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
                 if(botPtr->BoolReturnForPotionPresent()){
                     break;
                 }
             }
-            else if(botPtr->GetMana() <= (botPtr->GetMaxMana()/2)){
+            else if(botPtr->GetMana() <= (botPtr->GetMaxMana()/2) || botPtr->GetInvenotrySlotValueForBot(PotionType::MANAPOTION, PotionCostAndSize::SMALL) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
                 if(botPtr->BoolReturnForPotionPresent()){
