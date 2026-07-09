@@ -258,7 +258,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
         else if(random_num == 3){
             if(botPtr->GetHealth() <= (botPtr->GetHealth()/2)){
                 std::cout << "Bot Uses potion" << '\n';
-                botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::SMALL);
+                botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
                 if(botPtr->BoolReturnForPotionPresent()){
                     break;
                 }
