@@ -15,8 +15,7 @@ int main() {
     character = InitializeCharacter();
     std::cout << '\n';
 
-    character->PrintStats();
-
+    int counter = 1;
     while(true){
         if(character->GetHealth() == 0){
             break;
@@ -26,17 +25,17 @@ int main() {
     
         Character* bot = nullptr;
         bot = InitializeBot();
-    
-        bot->PrintStats();
 
-        std::cout << "Round 1\n" << '\n';
+        std::cout << "Round " << counter << "\n" << '\n';
         while(true){
             std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
             CheckAndPerformMove(character, bot);
             character->PrintStatsBetter(bot);
             if(bot->GetHealth() == 0){
                 std::cout << "You won\n" << '\n';
+                character->GiveMoney();
                 delete bot;
+                counter += 1;
                 break;
             }
             else{

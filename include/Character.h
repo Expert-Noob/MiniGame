@@ -4,8 +4,9 @@
 class Character{
 private:
     int money = 100;
-    int damagemultiplier = 100;
+    float damagemultiplier = 100.0f;
     bool damagemultstate = false;
+    bool IsPotionPresent = false;
 
     int inventory[3][3] = {
         //                          y:
@@ -31,9 +32,11 @@ public:
     virtual void Attack(Character* characterPtrToDamage) = 0;
     virtual void CastSpell(Character* characterPtrToDamage) = 0;
     virtual ~Character() = default;
+    void GiveMoney();
     void PrintStats();
     void PrintStatsBetter(Character* botPtr);
     void DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize);
+    bool BoolReturnForPotionPresent();
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
     void PrintInventory();
 };

@@ -1,6 +1,10 @@
 #include <iostream>
 #include "../include/Character.h"
 
+void Character::GiveMoney(){
+        money += 100;
+}
+
 void Character::PrintStats(){
         std::cout << "Stats:" << '\n';
         std::cout << "Health: " << health << '\n';
@@ -10,12 +14,32 @@ void Character::PrintStats(){
 
 void Character::PrintStatsBetter(Character* botPtr){
         std::cout << "Character stats:   Bot stats:" << '\n';
-        std::cout << "Health: " << health << "        Health:" << botPtr->GetHealth() << '\n';
-        std::cout << "Mana: " << mana << "          Mana:" << botPtr->GetMana() << '\n';
+
+        if(GetHealth() >= 100){
+                std::cout << "Health:" << health << "         Health:" << botPtr->GetHealth() << '\n';
+        }
+        else if(GetHealth() >= 10){
+                std::cout << "Health:" << health << "          Health:" << botPtr->GetHealth() << '\n';
+        }
+        else{
+                std::cout << "Health:" << health << "           Health:" << botPtr->GetHealth() << '\n';
+        }
+
+        if(GetMana() >= 100){
+                std::cout << "Mana:" << mana << "           Mana:" << botPtr->GetMana() << '\n';
+        }
+        else if(GetMana() >= 10){
+                std::cout << "Mana:" << mana << "            Mana:" << botPtr->GetMana() << '\n';
+        }
+        else{
+                std::cout << "Mana:" << mana << "             Mana:" << botPtr->GetMana() << '\n';
+        }
+
         std::cout << '\n';
 }
 
 void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize){
+        IsPotionPresent = false;
         int yinventory = 0;
         if(static_cast<int>(potionsize) == 25){
                 yinventory = 0;
@@ -31,6 +55,7 @@ void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize)
                 std::cout << "You dont have this potion" << '\n';
         }
         else{
+                IsPotionPresent = true;
                 inventory[static_cast<int>(potiontype)][yinventory] -= 1;
                 switch(potiontype){
                         case PotionType::HPPOTION:
@@ -52,13 +77,17 @@ void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize)
                                         std::cout << "You cant use another damage potion until you've attacked" << '\n';
                                 }
                                 else{
-                                        damagemultiplier += static_cast<int>(potionsize);
+                                        damagemultiplier += static_cast<float>(potionsize);
                                         std::cout << "+" << static_cast<int>(potionsize) << " damage multiplier" << '\n';
                                         damagemultstate = true;   
                                 }
                                 break;
                 }
         }
+}
+
+bool Character::BoolReturnForPotionPresent(){
+        return IsPotionPresent;
 }
 
 void Character::BuyPotion(PotionType potiontype, PotionCostAndSize potioncost){

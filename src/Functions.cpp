@@ -192,6 +192,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
         else if(move == "cast_spell"){
             if(characterPtr->SpellManaCost() > characterPtr->GetMana()){
                 std::cout << "You dont have enough mana\n" << '\n';
+                std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
             }
             else{
                 characterPtr->CastSpell(characterPtrToDamage);
@@ -203,15 +204,21 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             characterPtr->PrintInventory();
             std::cout << "Enter: ";
             DrinkPotionFunc(characterPtr);
-            std::cout << '\n';
-            characterPtr->PrintInventory();
-            break;
+            if(characterPtr->BoolReturnForPotionPresent()){
+                std::cout << '\n';
+                characterPtr->PrintInventory();
+                break;
+            }
+            else{
+                std::cout << "\nChoose your move: attack, cast_spell, use_potion or skip" << '\n';
+            }
         }
         else if(move == "skip"){
             break;
         }
         else{
-            std::cout << "Invalid input!\n\nEnter again: ";
+            std::cout << "Invalid input!\n" << '\n';
+            std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
         }
     }
 }
