@@ -161,37 +161,24 @@ Character* InitializeBot(){
 
     if(random_num == 1){
         botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
-        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        return botPtr;
     }
     else if(random_num == 2){
         botPtr = new Character(100, 150, 40.0f, 80.0f, 150);
-        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        return botPtr;
     }
     else if(random_num == 3){
         botPtr = new Character(150, 200, 10.0f, 50.0f, 60);
-        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        return botPtr;
     }
     else if(random_num == 4){
         botPtr = new Character(175, 125, 30.0f, 40.0f, 35);
-        botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-        return botPtr;
     }
     else{
         std::cout << "Error!" << '\n';
         botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
-        return botPtr;
     }
+    botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
+    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+    return botPtr;
 }
 
 void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamage){
