@@ -16,10 +16,7 @@ int main() {
     std::cout << '\n';
 
     int counter = 1;
-    while(true){
-        if(character->GetHealth() == 0){
-            break;
-        }
+    while(character->GetHealth() != 0){
         BuyPotionFunc(character);
         std::cout << '\n';
     
