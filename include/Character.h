@@ -6,17 +6,6 @@ private:
     int money = 100;
     bool IsPotionPresent = false;
 
-    int inventory[3][3] = {
-        //                          y:
-        //                  Small, Medium, Big
-        //     HpPotion       ?      ?      ?
-        // x:  ManaPotion     ?      ?      ?
-        //     DamagePotion   ?      ?      ?
-        {0, 0, 0},
-        {0, 0, 0},
-        {0, 0, 0}
-    };
-protected:
     bool damagemultstate = false;
     float damagemultiplier = 100.0f;
     float health = 0.0f;
@@ -27,6 +16,17 @@ protected:
     float damage = 0.0f;
     float spelldamage = 0.0f;
     int manacost = 0;
+    
+    int inventory[3][3] = {
+        //                          y:
+        //                  Small, Medium, Big
+        //     HpPotion       ?      ?      ?
+        // x:  ManaPotion     ?      ?      ?
+        //     DamagePotion   ?      ?      ?
+        {0, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
 public:
 
     Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost);
