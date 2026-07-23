@@ -1,5 +1,5 @@
 #pragma once
-#include "../include/Character.h"
+#include "../include/Character.hpp"
 
 Character* InitializeCharacter();
 

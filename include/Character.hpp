@@ -1,5 +1,5 @@
 #pragma once
-#include "PotionSize.h"
+#include "PotionSize.hpp"
 
 class Character{
 private:

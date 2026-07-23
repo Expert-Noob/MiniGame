@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "../include/Character.h"
-#include "../include/Print.h"
-#include "../include/Functions.h"
+#include "../include/Character.hpp"
+#include "../include/Print.hpp"
+#include "../include/Functions.hpp"
 
 int main() {
 

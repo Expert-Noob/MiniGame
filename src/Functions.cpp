@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <random>
-#include "../include/Character.h"
-#include "../include/Print.h"
+#include "../include/Character.hpp"
+#include "../include/Print.hpp"
 
 Character* InitializeCharacter(){
     Character* characterPtr = nullptr;

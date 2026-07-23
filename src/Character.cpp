@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/Character.h"
+#include "../include/Character.hpp"
 
 Character::Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost){
         this->maxhealth = maxhealth;
