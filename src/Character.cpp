@@ -17,17 +17,17 @@ int Character::GetMaxHealth() const{
 int Character::GetMaxMana() const{
         return maxmana;
 }
-int Character::GetHealth(){
+int Character::GetHealth() const{
         return health;
 }
-int Character::GetMana(){
+int Character::GetMana() const{
         return mana;
 }
-int Character::GetSpellManaCost(){
+int Character::GetSpellManaCost() const{
         return manacost;
 }
 
-bool Character::GetInvenotrySlotValueForBot(PotionType potiontype, PotionCostAndSize potionsize){
+bool Character::GetNumberOfPotionsInSlotForBot(PotionType potiontype, PotionCostAndSize potionsize){
         int yinventory = 0;
         if(static_cast<int>(potionsize) == 25){
                 yinventory = 0;
@@ -38,6 +38,8 @@ bool Character::GetInvenotrySlotValueForBot(PotionType potiontype, PotionCostAnd
         else{
                 yinventory = 2;
         }
+        //returns either 0 which will make bool value false or
+        //returns 1+ so value for bool will be true
         return inventory[static_cast<int>(potiontype)][yinventory];
 }
 

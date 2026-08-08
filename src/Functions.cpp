@@ -244,14 +244,14 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
             }
         }
         else if(random_num == 3){
-            if(botPtr->GetHealth() <= (botPtr->GetMaxHealth()/2) && botPtr->GetInvenotrySlotValueForBot(PotionType::HPPOTION, PotionCostAndSize::MEDIUM) > 0){
+            if(botPtr->GetHealth() <= (botPtr->GetMaxHealth()/2) && botPtr->GetNumberOfPotionsInSlotForBot(PotionType::HPPOTION, PotionCostAndSize::MEDIUM) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
                 if(botPtr->BoolReturnForPotionPresent()){
                     break;
                 }
             }
-            else if(botPtr->GetMana() <= (botPtr->GetMaxMana()/2) && botPtr->GetInvenotrySlotValueForBot(PotionType::MANAPOTION, PotionCostAndSize::SMALL) > 0){
+            else if(botPtr->GetMana() <= (botPtr->GetMaxMana()/2) && botPtr->GetNumberOfPotionsInSlotForBot(PotionType::MANAPOTION, PotionCostAndSize::SMALL) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
                 if(botPtr->BoolReturnForPotionPresent()){

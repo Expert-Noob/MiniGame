@@ -10,7 +10,7 @@ private:
     float damagemultiplier = 100.0f;
     float health = 0.0f;
     float mana = 0.0f;
-
+    
     int maxhealth = 0;
     int maxmana = 0;
     float damage = 0.0f;
@@ -18,11 +18,11 @@ private:
     int manacost = 0;
     
     int inventory[3][3] = {
-        //                          y:
-        //                  Small, Medium, Big
-        //     HpPotion       ?      ?      ?
-        // x:  ManaPotion     ?      ?      ?
-        //     DamagePotion   ?      ?      ?
+        //
+        //             Small, Medium, Big
+        //HpPotion       ?      ?      ?
+        //ManaPotion     ?      ?      ?
+        //DamagePotion   ?      ?      ?
         {0, 0, 0},
         {0, 0, 0},
         {0, 0, 0}
@@ -33,10 +33,10 @@ public:
 
     int GetMaxHealth() const;
     int GetMaxMana() const;
-    int GetHealth();
-    int GetMana();
-    int GetSpellManaCost();
-    bool GetInvenotrySlotValueForBot(PotionType potiontype, PotionCostAndSize potionsize);
+    int GetHealth() const;
+    int GetMana() const;
+    int GetSpellManaCost() const;
+    bool GetNumberOfPotionsInSlotForBot(PotionType potiontype, PotionCostAndSize potionsize);
     void TakeHealth(int damage);
     void TakeMana(int usedmana);
     void Attack(Character* characterPtrToDamage);
