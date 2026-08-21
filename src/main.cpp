@@ -6,19 +6,16 @@
 
 int main() {
 
-    Character* character = nullptr;
-
     std::cout << "-Game-" << '\n';
     std::cout << "Choose youre character" << '\n';
     printAllCharacters();
     std::cout << "Enter: ";
-    character = InitializeCharacter();
+    Character* character = InitializeCharacter();
     std::cout << '\n';
 
     int counter = 1;
     while(character->GetHealth() != 0){
         BuyPotionFunc(character);
-        std::cout << '\n';
     
         Character* bot = nullptr;
         bot = InitializeBot();

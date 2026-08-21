@@ -8,7 +8,8 @@ Character* InitializeCharacter(){
     Character* characterPtr = nullptr;
     while(true){
         std::string choose;
-        std::cin >> choose;
+        std::getline(std::cin, choose);
+        
         if(choose == "Axe"){
             characterPtr = new Character(200, 100, 20.0f, 30.0f, 50);
             return characterPtr;
@@ -34,7 +35,8 @@ Character* InitializeCharacter(){
 void PickPotion(Character* characterPtr){
     while(true){
         std::string itemname;
-        std::cin >> itemname;
+        std::getline(std::cin, itemname);
+        
         if(itemname == "Small_Hp_Potion" || itemname == "SHP"){
             characterPtr->BuyPotion(PotionType::HPPOTION,PotionCostAndSize::SMALL);
             break;
@@ -80,7 +82,7 @@ void PickPotion(Character* characterPtr){
 void DrinkPotionFunc(Character* characterPtr){
     while(true){
         std::string itemname;
-        std::cin >> itemname;
+        std::getline(std::cin, itemname);
         if(itemname == "Small_Hp_Potion" || itemname == "SHP"){
             characterPtr->DrinkPotion(PotionType::HPPOTION,PotionCostAndSize::SMALL);
             break;
@@ -127,11 +129,13 @@ void BuyPotionFunc(Character* characterPtr){
     std::cout << "Do you want to buy something from the shop? (yes/no)" << '\n';;
     std::cout << "Money:" << characterPtr->GetMoney() << '\n';
     std::cout << "Enter: ";
+
     while(true){  
         std::string check;
-        std::cin >> check;
+        std::getline(std::cin, check);
     
         if(check == "no"){
+            std::cout << '\n';
             break;
         }
         else if(check == "yes"){
@@ -185,7 +189,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
     while(true){
         std::cout << "Enter: ";
         std::string move;
-        std::cin >> move;
+        std::getline(std::cin, move);
         std::cout << '\n';
         if(move == "attack"){
             characterPtr->Attack(characterPtrToDamage);
