@@ -1,16 +1,20 @@
 #include <iostream>
 #include "../include/Character.hpp"
 
-Character::Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost){
-        this->maxhealth = maxhealth;
-        this->maxmana = maxmana;
-        this->damage = damage;
-        this->spelldamage = spelldamage;
-        this->manacost = manacost;
+Character::Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost) :
+        //member initializer list
+        maxhealth(maxhealth),
+        maxmana(maxmana),
+        damage(damage),
+        spelldamage(spelldamage),
+        manacost(manacost)
+
+        /*Main body of constructor*/{
         health = static_cast<float>(maxhealth);
         mana = static_cast<float>(maxmana);
 }
 
+//get functions
 int Character::GetMaxHealth() const{
         return maxhealth;
 }
@@ -26,7 +30,6 @@ int Character::GetMana() const{
 int Character::GetSpellManaCost() const{
         return manacost;
 }
-
 bool Character::GetNumberOfPotionsInSlotForBot(PotionType potiontype, PotionCostAndSize potionsize){
         int yinventory = 0;
         if(static_cast<int>(potionsize) == 25){
@@ -38,8 +41,10 @@ bool Character::GetNumberOfPotionsInSlotForBot(PotionType potiontype, PotionCost
         else{
                 yinventory = 2;
         }
-        //returns either 0 which will make bool value false or
-        //returns 1+ so value for bool will be true
+
+        //returns either 0 which will make if statement false
+        //or returns 1+ which will make if statement true
+        //if statement is responsible for bot drinking potions
         return inventory[static_cast<int>(potiontype)][yinventory];
 }
 
@@ -59,8 +64,7 @@ void Character::TakeMana(int usedmana){
 
 void Character::Attack(Character* characterPtrToDamage){
         if(damagemultstate){
-                float damageSave = damage*(damagemultiplier/100.0f);
-                characterPtrToDamage->TakeHealth(damageSave);
+                characterPtrToDamage->TakeHealth(damage*(damagemultiplier/100.0f));
                 damagemultiplier = 100.0f;
                 damagemultstate = false;
         }
@@ -91,14 +95,7 @@ int Character::GetMoney(){
         return money;
 }
 
-void Character::PrintStats(){
-        std::cout << "Stats:" << '\n';
-        std::cout << "Health: " << health << '\n';
-        std::cout << "Mana: " << mana << '\n';
-        std::cout << '\n';
-}
-
-void Character::PrintStatsBetter(Character* botPtr){
+void Character::PrintStats(Character* botPtr){
         std::cout << "Character stats:   Bot stats:" << '\n';
 
         if(GetHealth() >= 100){
@@ -200,6 +197,7 @@ void Character::BuyPotion(PotionType potiontype, PotionCostAndSize potioncost){
 void Character::PrintInventory(){
         std::cout << "Inventory:" << '\n';
         std::cout << "              Small  Medium  Big" << '\n';
+        
         for(int i = 0; i < 3; i++){
                 switch (i) {
                         case 0:
