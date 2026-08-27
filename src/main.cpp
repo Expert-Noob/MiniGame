@@ -24,30 +24,28 @@ int main(){
 
         std::cout << "Round " << Roundcounter << "\n\n";
 
-        while(true){
+        while(bot->GetHealth() != 0 && character->GetHealth() != 0){
             std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
             CheckAndPerformMove(character, bot);
-            character->PrintStats(bot);
+            PrintStats(character, bot);
 
             if(bot->GetHealth() == 0){
                 std::cout << "You won\n" << '\n';
                 character->GiveMoney();
-                delete bot;
+
                 Roundcounter += 1;
-                break;
             }
             else{
                 std::cout << "Bot's move: " << '\n';
                 BotMove(bot, character);
-                character->PrintStats(bot);
-                if(character->GetHealth() == 0){
-                    std::cout << "You lost :(" << '\n';
-                    delete bot;
-                    break;
-                }
+                PrintStats(character, bot);
             }
         }
+
+        delete bot;
     }
+
+    std::cout << "You lost :(" << '\n';
 
     delete character;
 

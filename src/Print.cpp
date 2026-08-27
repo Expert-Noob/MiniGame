@@ -1,4 +1,5 @@
 #include <iostream>
+#include "../include/Character.hpp"
 
 void printAllCharacters(){
     std::cout << "Axe                 Lina                 Rubick               Ursa" << '\n';
@@ -20,4 +21,30 @@ void printShop(){
     std::cout << "Small_Damage_Potion       25             x1.25 damage" << '\n';
     std::cout << "Medium_Damage_Potion      50             x1.5 damage" << '\n';
     std::cout << "Big_Damage_Potion         100            x2 damage\n" << '\n';
+}
+
+void PrintStats(Character* characterPtr, Character* botPtr){
+        std::cout << "Character stats:   Bot stats:" << '\n';
+
+        if(characterPtr->GetHealth() >= 100){
+                std::cout << "Health:" << characterPtr->GetHealth() << "         Health:" << botPtr->GetHealth() << '\n';
+        }
+        else if(characterPtr->GetHealth() >= 10){
+                std::cout << "Health:" << characterPtr->GetHealth() << "          Health:" << botPtr->GetHealth() << '\n';
+        }
+        else{
+                std::cout << "Health:" << characterPtr->GetHealth() << "           Health:" << botPtr->GetHealth() << '\n';
+        }
+
+        if(characterPtr->GetMana() >= 100){
+                std::cout << "Mana:" << characterPtr->GetMana() << "           Mana:" << botPtr->GetMana() << '\n';
+        }
+        else if(characterPtr->GetMana() >= 10){
+                std::cout << "Mana:" << characterPtr->GetMana() << "            Mana:" << botPtr->GetMana() << '\n';
+        }
+        else{
+                std::cout << "Mana:" << characterPtr->GetMana() << "             Mana:" << botPtr->GetMana() << '\n';
+        }
+
+        std::cout << '\n';
 }

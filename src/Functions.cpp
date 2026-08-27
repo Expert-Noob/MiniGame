@@ -1,4 +1,5 @@
 //headers
+#include "../include/Functions.hpp"
 #include "../include/Character.hpp"
 #include "../include/Print.hpp"
 
@@ -204,7 +205,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
         std::string move;
         std::getline(std::cin, move);
         std::cout << '\n';
-        
+
         if(move == "attack"){
             characterPtr->Attack(characterPtrToDamage);
             break;

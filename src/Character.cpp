@@ -88,37 +88,11 @@ void Character::CastSpell(Character* characterPtrToDamage){
 }
 
 void Character::GiveMoney(){
-        money += 100;
+        money += 150;
 }
 
 int Character::GetMoney(){
         return money;
-}
-
-void Character::PrintStats(Character* botPtr){
-        std::cout << "Character stats:   Bot stats:" << '\n';
-
-        if(GetHealth() >= 100){
-                std::cout << "Health:" << health << "         Health:" << botPtr->GetHealth() << '\n';
-        }
-        else if(GetHealth() >= 10){
-                std::cout << "Health:" << health << "          Health:" << botPtr->GetHealth() << '\n';
-        }
-        else{
-                std::cout << "Health:" << health << "           Health:" << botPtr->GetHealth() << '\n';
-        }
-
-        if(GetMana() >= 100){
-                std::cout << "Mana:" << mana << "           Mana:" << botPtr->GetMana() << '\n';
-        }
-        else if(GetMana() >= 10){
-                std::cout << "Mana:" << mana << "            Mana:" << botPtr->GetMana() << '\n';
-        }
-        else{
-                std::cout << "Mana:" << mana << "             Mana:" << botPtr->GetMana() << '\n';
-        }
-
-        std::cout << '\n';
 }
 
 void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize){
