@@ -16,13 +16,13 @@ int main(){
     Character* character = InitializeCharacter();
     std::cout << '\n';
 
-    int counter = 1;
+    int Roundcounter = 1;
     while(character->GetHealth() != 0){
         BuyPotionFunc(character);
     
         Character* bot = InitializeBot();
 
-        std::cout << "Round " << counter << "\n" << '\n';
+        std::cout << "Round " << Roundcounter << "\n\n";
 
         while(true){
             std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
@@ -33,7 +33,7 @@ int main(){
                 std::cout << "You won\n" << '\n';
                 character->GiveMoney();
                 delete bot;
-                counter += 1;
+                Roundcounter += 1;
                 break;
             }
             else{
