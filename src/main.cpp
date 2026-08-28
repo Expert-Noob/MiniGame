@@ -18,14 +18,13 @@ int main(){
 
     int Roundcounter = 1;
     while(character->GetHealth() != 0){
-        BuyPotionFunc(character);
+        BuyPotionChooseFunc(character);
     
         Character* bot = InitializeBot();
 
         std::cout << "Round " << Roundcounter << "\n\n";
 
         while(bot->GetHealth() != 0 && character->GetHealth() != 0){
-            std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
             CheckAndPerformMove(character, bot);
             PrintStats(character, bot);
 

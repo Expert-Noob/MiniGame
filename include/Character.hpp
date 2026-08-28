@@ -7,11 +7,10 @@ class Character{
 private:
     //changing values
     int money = 100;
-    bool IsPotionPresent = false;
-    bool damagemultstate = false;
-    float damagemultiplier = 100.0f;
+    float damagemultiplier = 1.0f;
     float health = 0.0f;
     float mana = 0.0f;
+    bool IsPotionDrank = false;
     
     //const values
     const int maxhealth = 0;
@@ -39,10 +38,11 @@ public:
     int GetHealth() const;
     int GetMana() const;
     int GetSpellManaCost() const;
+    int GetMoney() const;
+    bool GetIsIsPotionDrank() const;
     int GetNumberOfPotionsInInventorySlot(PotionType potiontype, PotionCostAndSize potionsize);
     int GetNumberOfPotionsInInventorySlot(int xinventory, int yinventory);
-    int GetMoney();
-    int GetYCoordForInventory(PotionCostAndSize potionsize);
+    int GetYCordForInventory(PotionCostAndSize potionsize);
 
     //Round action functions
     void TakeHealth(int damage);
@@ -53,6 +53,5 @@ public:
     //other
     void GiveMoney(int value);
     void DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize);
-    bool BoolReturnForPotionPresent();
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
 };

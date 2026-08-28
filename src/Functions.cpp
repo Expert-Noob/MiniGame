@@ -75,7 +75,7 @@ Character* InitializeBot(){
     return botPtr;
 }
 
-void BuyPotionFunc(Character* characterPtr){
+void BuyPotionChooseFunc(Character* characterPtr){
     std::cout << "Do you want to buy something from the shop? (yes/no)" << '\n';;
     std::cout << "Money:" << characterPtr->GetMoney() << '\n';
     std::cout << "Enter: ";
@@ -152,7 +152,7 @@ void PickPotion(Character* characterPtr){
     }
 }
 
-void DrinkPotionFunc(Character* characterPtr){
+void DrinkPotionChooseFunc(Character* characterPtr){
     while(true){
         std::string itemname;
         std::getline(std::cin, itemname);
@@ -201,6 +201,7 @@ void DrinkPotionFunc(Character* characterPtr){
 
 void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamage){
     while(true){
+        std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
         std::cout << "Enter: ";
         std::string move;
         std::getline(std::cin, move);
@@ -213,7 +214,6 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
         else if(move == "cast_spell"){
             if(characterPtr->GetSpellManaCost() > characterPtr->GetMana()){
                 std::cout << "You dont have enough mana\n" << '\n';
-                std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
             }
             else{
                 characterPtr->CastSpell(characterPtrToDamage);
@@ -224,12 +224,9 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             std::cout << "Which potion you want to use?" << '\n';
             PrintInventory(characterPtr);
             std::cout << "Enter: ";
-            DrinkPotionFunc(characterPtr);
-            if(characterPtr->BoolReturnForPotionPresent()){
+            DrinkPotionChooseFunc(characterPtr);
+            if(characterPtr->GetIsIsPotionDrank()){
                 break;
-            }
-            else{
-                std::cout << "\nChoose your move: attack, cast_spell, use_potion or skip" << '\n';
             }
         }
         else if(move == "skip"){
@@ -237,7 +234,6 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
         }
         else{
             std::cout << "Invalid input!\n" << '\n';
-            std::cout << "Choose your move: attack, cast_spell, use_potion or skip" << '\n';
         }
     }
 }
@@ -267,7 +263,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
             botPtr->GetNumberOfPotionsInInventorySlot(PotionType::HPPOTION, PotionCostAndSize::MEDIUM) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-                if(botPtr->BoolReturnForPotionPresent()){
+                if(botPtr->GetIsIsPotionDrank()){
                     break;
                 }
             }
@@ -275,7 +271,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
             botPtr->GetNumberOfPotionsInInventorySlot(PotionType::MANAPOTION, PotionCostAndSize::SMALL) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-                if(botPtr->BoolReturnForPotionPresent()){
+                if(botPtr->GetIsIsPotionDrank()){
                     break;
                 }
             }
