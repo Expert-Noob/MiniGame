@@ -5,9 +5,9 @@
 
 class Character{
 private:
+    //changing values
     int money = 100;
     bool IsPotionPresent = false;
-
     bool damagemultstate = false;
     float damagemultiplier = 100.0f;
     float health = 0.0f;
@@ -39,7 +39,10 @@ public:
     int GetHealth() const;
     int GetMana() const;
     int GetSpellManaCost() const;
-    bool GetNumberOfPotionsInSlotForBot(PotionType potiontype, PotionCostAndSize potionsize);
+    int GetNumberOfPotionsInInventorySlot(PotionType potiontype, PotionCostAndSize potionsize);
+    int GetNumberOfPotionsInInventorySlot(int xinventory, int yinventory);
+    int GetMoney();
+    int GetYCoordForInventory(PotionCostAndSize potionsize);
 
     //Round action functions
     void TakeHealth(int damage);
@@ -47,12 +50,9 @@ public:
     void Attack(Character* characterPtrToDamage);
     void CastSpell(Character* characterPtrToDamage);
     
-    //extra
-    void GiveMoney();
-    int GetMoney();
-    void PrintStats(Character* botPtr);
+    //other
+    void GiveMoney(int value);
     void DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize);
     bool BoolReturnForPotionPresent();
     void BuyPotion(PotionType potiontype, PotionCostAndSize potionsize);
-    void PrintInventory();
 };

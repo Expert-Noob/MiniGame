@@ -1,5 +1,9 @@
-#include <iostream>
+//headers
 #include "../include/Character.hpp"
+
+//std
+#include <iostream>
+#include <math.h>
 
 Character::Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost) :
         //member initializer list
@@ -30,24 +34,30 @@ int Character::GetMana() const{
 int Character::GetSpellManaCost() const{
         return manacost;
 }
-bool Character::GetNumberOfPotionsInSlotForBot(PotionType potiontype, PotionCostAndSize potionsize){
-        int yinventory = 0;
-        if(static_cast<int>(potionsize) == 25){
-                yinventory = 0;
-        }
-        else if(static_cast<int>(potionsize) == 50){
-                yinventory = 1;
-        }
-        else{
-                yinventory = 2;
-        }
+int Character::GetNumberOfPotionsInInventorySlot(PotionType potiontype, PotionCostAndSize potionsize){
+        int xinventory = static_cast<int>(potiontype);
+        int yinventory = GetYCoordForInventory(potionsize);
 
         //returns either 0 which will make if statement false
         //or returns 1+ which will make if statement true
-        //if statement is responsible for bot drinking potions
-        return inventory[static_cast<int>(potiontype)][yinventory];
+        //if statement is responsible for drinking potion
+        return inventory[xinventory][yinventory];
+}
+int Character::GetNumberOfPotionsInInventorySlot(int xinventory, int yinventory){
+        return inventory[xinventory][yinventory];
+}
+int Character::GetMoney(){
+        return money;
 }
 
+//uses equation to get int based on potionsize:
+// SMALL -> 0, MEDIUM -> 1, BIG -> 2
+//   25  -> 0,   50   -> 1, 100 -> 2
+int Character::GetYCoordForInventory(PotionCostAndSize potionsize){
+    return static_cast<int>( std::lround( std::log2( static_cast<float>(potionsize)/25.0f )));
+}
+
+//Round actions functions
 void Character::TakeHealth(int damage){
         health -= damage;
         if(health < 0){
@@ -75,8 +85,7 @@ void Character::Attack(Character* characterPtrToDamage){
 
 void Character::CastSpell(Character* characterPtrToDamage){
         if(damagemultstate){
-                float damageSave = spelldamage*(damagemultiplier/100.0f);
-                characterPtrToDamage->TakeHealth(damageSave);
+                characterPtrToDamage->TakeHealth(spelldamage*(damagemultiplier/100.0f));
                 TakeMana(manacost);
                 damagemultiplier = 100.0f;
                 damagemultstate = false;
@@ -87,33 +96,22 @@ void Character::CastSpell(Character* characterPtrToDamage){
         }
 }
 
-void Character::GiveMoney(){
-        money += 150;
-}
-
-int Character::GetMoney(){
-        return money;
+//other
+void Character::GiveMoney(int value){
+        money += value;
 }
 
 void Character::DrinkPotion(PotionType potiontype, PotionCostAndSize potionsize){
         IsPotionPresent = false;
-        int yinventory = 0;
-        if(static_cast<int>(potionsize) == 25){
-                yinventory = 0;
-        }
-        else if(static_cast<int>(potionsize) == 50){
-                yinventory = 1;
-        }
-        else{
-                yinventory = 2;
-        }
+        int xinventory = static_cast<int>(potiontype);
+        int yinventory = GetYCoordForInventory(potionsize);
 
-        if(inventory[static_cast<int>(potiontype)][yinventory] == 0){
+        if(inventory[xinventory][yinventory] == 0){
                 std::cout << "You dont have this potion" << '\n';
         }
         else{
                 IsPotionPresent = true;
-                inventory[static_cast<int>(potiontype)][yinventory] -= 1;
+                inventory[xinventory][yinventory] -= 1;
                 switch(potiontype){
                         case PotionType::HPPOTION:
                                 health += static_cast<int>(potionsize);
@@ -148,46 +146,16 @@ bool Character::BoolReturnForPotionPresent(){
         return IsPotionPresent;
 }
 
-void Character::BuyPotion(PotionType potiontype, PotionCostAndSize potioncost){
-        int yinventory = 0;
-        if(static_cast<int>(potioncost) == 25){
-                yinventory = 0;
-        }
-        else if(static_cast<int>(potioncost) == 50){
-                yinventory = 1;
-        }
-        else{
-                yinventory = 2;
-        }
-        if(static_cast<int>(potioncost) > money){
+void Character::BuyPotion(PotionType potiontype, PotionCostAndSize potionsize){
+        int xinventory = static_cast<int>(potiontype);
+        int yinventory = GetYCoordForInventory(potionsize);
+        int potioncost = static_cast<int>(potionsize);
+
+        if(potioncost > money){
                 std::cout << "You dont have enough money for this potion!" << '\n';
         }
         else{
-                money -= static_cast<int>(potioncost);
-                inventory[static_cast<int>(potiontype)][yinventory] += 1;
+                money -= potioncost;
+                inventory[xinventory][yinventory] += 1;
         }
-}
-
-void Character::PrintInventory(){
-        std::cout << "Inventory:" << '\n';
-        std::cout << "              Small  Medium  Big" << '\n';
-        
-        for(int i = 0; i < 3; i++){
-                switch (i) {
-                        case 0:
-                                std::cout << "    Hp_Potion   ";
-                                break;
-                        case 1:
-                                std::cout << "  Mana_Potion   ";
-                                break;
-                        case 2:
-                                std::cout << "Damage_Potion   ";
-                                break;
-                }
-                for(int i2 = 0; i2 < 3; i2++){
-                        std::cout << inventory[i][i2] << "      ";
-                }
-                std::cout << '\n';
-        }
-        std::cout << '\n';
 }

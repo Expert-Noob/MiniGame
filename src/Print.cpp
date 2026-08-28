@@ -1,10 +1,13 @@
-#include <iostream>
+//headers
 #include "../include/Character.hpp"
+
+//std
+#include <iostream>
 
 void printAllCharacters(){
     std::cout << "Axe                 Lina                 Rubick               Ursa" << '\n';
     std::cout << "Health:200          Health:100           Health:150           Health:175" << '\n';
-    std::cout << "Mana:100            Mana:150             Mana:200             Mana:125" << '\n';
+    std::cout << "Mana:100            Mana:100             Mana:200             Mana:125" << '\n';
     std::cout << "Damage:20           Damage:40            Damage:10            Damage:30" << '\n';
     std::cout << "SpellDamage:30      SpellDamage:80       SpellDamage:50       SpellDamage:40" << '\n';
     std::cout << "ManaCost:50         ManaCost:150         ManaCost:60          ManaCost:35" << '\n';
@@ -46,5 +49,29 @@ void PrintStats(Character* characterPtr, Character* botPtr){
                 std::cout << "Mana:" << characterPtr->GetMana() << "             Mana:" << botPtr->GetMana() << '\n';
         }
 
+        std::cout << '\n';
+}
+
+void PrintInventory(Character* characterPtr){
+        std::cout << "Inventory:" << '\n';
+        std::cout << "              Small  Medium  Big" << '\n';
+        
+        for(int i = 0; i < 3; i++){
+                switch (i) {
+                        case 0:
+                                std::cout << "    Hp_Potion   ";
+                                break;
+                        case 1:
+                                std::cout << "  Mana_Potion   ";
+                                break;
+                        case 2:
+                                std::cout << "Damage_Potion   ";
+                                break;
+                }
+                for(int i2 = 0; i2 < 3; i2++){
+                        std::cout << characterPtr->GetNumberOfPotionsInInventorySlot(i, i2) << "      ";
+                }
+                std::cout << '\n';
+        }
         std::cout << '\n';
 }

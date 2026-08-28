@@ -31,7 +31,7 @@ int main(){
 
             if(bot->GetHealth() == 0){
                 std::cout << "You won\n" << '\n';
-                character->GiveMoney();
+                character->GiveMoney(150);
 
                 Roundcounter += 1;
             }

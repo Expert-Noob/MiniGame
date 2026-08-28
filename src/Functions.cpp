@@ -22,7 +22,7 @@ Character* InitializeCharacter(){
             return characterPtr;
         }
         else if(choose == "Lina"){
-            Character* characterPtr = new Character(100, 150, 40.0f, 80.0f, 150);
+            Character* characterPtr = new Character(100, 100, 40.0f, 80.0f, 150);
             return characterPtr;
         }
         else if(choose == "Rubick"){
@@ -32,6 +32,72 @@ Character* InitializeCharacter(){
         else if(choose == "Ursa"){
             Character* characterPtr = new Character(175, 125, 30.0f, 40.0f, 35);
             return characterPtr;
+        }
+        else{
+            std::cout << "Invalid input!\n\nEnter again: ";
+        }
+    }
+}
+
+//initializes random character for bot 
+Character* InitializeBot(){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(1, 4);
+
+    int random_num = distrib(gen);
+
+    Character* botPtr = nullptr;
+
+    //parameters for constructor: 
+    //maxhealth, maxmana, damage, spelldamage, manacost
+    if(random_num == 1){
+        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
+    }
+    else if(random_num == 2){
+        botPtr = new Character(100, 150, 40.0f, 80.0f, 150);
+    }
+    else if(random_num == 3){
+        botPtr = new Character(150, 200, 10.0f, 50.0f, 60);
+    }
+    else if(random_num == 4){
+        botPtr = new Character(175, 125, 30.0f, 40.0f, 35);
+    }
+    else{
+        std::cout << "Error!" << '\n';
+        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
+    }
+
+    botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
+    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+
+    return botPtr;
+}
+
+void BuyPotionFunc(Character* characterPtr){
+    std::cout << "Do you want to buy something from the shop? (yes/no)" << '\n';;
+    std::cout << "Money:" << characterPtr->GetMoney() << '\n';
+    std::cout << "Enter: ";
+
+    std::string input;
+    while(input != "no"){  
+        std::getline(std::cin, input);
+        std::cout << '\n';
+    
+        if(input == "no"){
+            //nothing
+        }
+        else if(input == "yes"){
+            printShop();
+
+            std::cout << "You can enter the first letter of each word as a shortcut (e.g. BHP = Big_Hp_Potion)" << '\n';
+            std::cout << "Enter what you want to buy: ";
+            PickPotion(characterPtr);
+
+            std::cout << '\n';
+            PrintInventory(characterPtr);
+            std::cout << "Do you want to buy anything else? (yes/no)\nEnter: ";
         }
         else{
             std::cout << "Invalid input!\n\nEnter again: ";
@@ -81,7 +147,7 @@ void PickPotion(Character* characterPtr){
             break;
         }
         else{
-            std::cout << "Invalid input!\n\nEnter Again: ";
+            std::cout << "Invalid input!\n\nEnter again: ";
         }
     }
 }
@@ -133,72 +199,6 @@ void DrinkPotionFunc(Character* characterPtr){
     }
 }
 
-void BuyPotionFunc(Character* characterPtr){
-    std::cout << "Do you want to buy something from the shop? (yes/no)" << '\n';;
-    std::cout << "Money:" << characterPtr->GetMoney() << '\n';
-    std::cout << "Enter: ";
-
-    while(true){  
-        std::string check;
-        std::getline(std::cin, check);
-        std::cout << '\n';
-    
-        if(check == "no"){
-            break;
-        }
-        else if(check == "yes"){
-            printShop();
-
-            std::cout << "You can enter the first letter of each word as a shortcut (e.g. BHP = Big_Hp_Potion)" << '\n';
-            std::cout << "Enter what you want to buy: ";
-            PickPotion(characterPtr);
-
-            std::cout << '\n';
-            characterPtr->PrintInventory();
-            std::cout << "Do you want to buy anything else? (yes/no)\nEnter: ";
-        }
-        else{
-            std::cout << "Invalid input!\n\nEnter again: ";
-        }
-    }
-}
-
-//initializes random character for bot 
-Character* InitializeBot(){
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distrib(1, 4);
-
-    int random_num = distrib(gen);
-
-    Character* botPtr = nullptr;
-
-    //parameters for constructor: 
-    //maxhealth, maxmana, damage, spelldamage, manacost
-    if(random_num == 1){
-        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
-    }
-    else if(random_num == 2){
-        botPtr = new Character(100, 150, 40.0f, 80.0f, 150);
-    }
-    else if(random_num == 3){
-        botPtr = new Character(150, 200, 10.0f, 50.0f, 60);
-    }
-    else if(random_num == 4){
-        botPtr = new Character(175, 125, 30.0f, 40.0f, 35);
-    }
-    else{
-        std::cout << "Error!" << '\n';
-        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
-    }
-
-    botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-
-    return botPtr;
-}
-
 void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamage){
     while(true){
         std::cout << "Enter: ";
@@ -222,7 +222,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
         }
         else if(move == "use_potion"){
             std::cout << "Which potion you want to use?" << '\n';
-            characterPtr->PrintInventory();
+            PrintInventory(characterPtr);
             std::cout << "Enter: ";
             DrinkPotionFunc(characterPtr);
             if(characterPtr->BoolReturnForPotionPresent()){
@@ -264,7 +264,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
         }
         else if(random_num == 3){
             if(botPtr->GetHealth() <= (botPtr->GetMaxHealth()/2) && 
-            botPtr->GetNumberOfPotionsInSlotForBot(PotionType::HPPOTION, PotionCostAndSize::MEDIUM) > 0){
+            botPtr->GetNumberOfPotionsInInventorySlot(PotionType::HPPOTION, PotionCostAndSize::MEDIUM) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
                 if(botPtr->BoolReturnForPotionPresent()){
@@ -272,7 +272,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
                 }
             }
             else if(botPtr->GetMana() <= (botPtr->GetMaxMana()/2) && 
-            botPtr->GetNumberOfPotionsInSlotForBot(PotionType::MANAPOTION, PotionCostAndSize::SMALL) > 0){
+            botPtr->GetNumberOfPotionsInInventorySlot(PotionType::MANAPOTION, PotionCostAndSize::SMALL) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
                 if(botPtr->BoolReturnForPotionPresent()){
