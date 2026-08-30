@@ -37,7 +37,7 @@ int Character::GetSpellManaCost() const{
 int Character::GetMoney() const{
         return money;
 }
-bool Character::GetIsIsPotionDrank() const{
+bool Character::GetIsPotionDrank() const{
         return IsPotionDrank;
 }
 int Character::GetNumberOfPotionsInInventorySlot(PotionType potiontype, PotionCostAndSize potionsize){

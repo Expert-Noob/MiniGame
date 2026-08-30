@@ -22,7 +22,7 @@ Character* InitializeCharacter(){
             return characterPtr;
         }
         else if(choose == "Lina"){
-            Character* characterPtr = new Character(100, 100, 40.0f, 80.0f, 150);
+            Character* characterPtr = new Character(100, 150, 40.0f, 80.0f, 100);
             return characterPtr;
         }
         else if(choose == "Rubick"){
@@ -225,7 +225,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             PrintInventory(characterPtr);
             std::cout << "Enter: ";
             DrinkPotionChooseFunc(characterPtr);
-            if(characterPtr->GetIsIsPotionDrank()){
+            if(characterPtr->GetIsPotionDrank()){
                 break;
             }
         }
@@ -263,7 +263,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
             botPtr->GetNumberOfPotionsInInventorySlot(PotionType::HPPOTION, PotionCostAndSize::MEDIUM) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-                if(botPtr->GetIsIsPotionDrank()){
+                if(botPtr->GetIsPotionDrank()){
                     break;
                 }
             }
@@ -271,7 +271,7 @@ void BotMove(Character* botPtr, Character* characterPtrToDamage){
             botPtr->GetNumberOfPotionsInInventorySlot(PotionType::MANAPOTION, PotionCostAndSize::SMALL) > 0){
                 std::cout << "Bot Uses potion" << '\n';
                 botPtr->DrinkPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-                if(botPtr->GetIsIsPotionDrank()){
+                if(botPtr->GetIsPotionDrank()){
                     break;
                 }
             }

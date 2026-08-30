@@ -39,7 +39,7 @@ public:
     int GetMana() const;
     int GetSpellManaCost() const;
     int GetMoney() const;
-    bool GetIsIsPotionDrank() const;
+    bool GetIsPotionDrank() const;
     int GetNumberOfPotionsInInventorySlot(PotionType potiontype, PotionCostAndSize potionsize);
     int GetNumberOfPotionsInInventorySlot(int xinventory, int yinventory);
     int GetYCordForInventory(PotionCostAndSize potionsize);
