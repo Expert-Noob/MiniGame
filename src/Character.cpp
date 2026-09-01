@@ -3,7 +3,6 @@
 
 //std
 #include <iostream>
-#include <math.h>
 
 Character::Character(int maxhealth, int maxmana, float damage, float spelldamage, int manacost) :
         //member initializer list
@@ -11,11 +10,11 @@ Character::Character(int maxhealth, int maxmana, float damage, float spelldamage
         maxmana(maxmana),
         damage(damage),
         spelldamage(spelldamage),
-        manacost(manacost)
-
-        /*Main body of constructor*/{
-        health = static_cast<float>(maxhealth);
-        mana = static_cast<float>(maxmana);
+        manacost(manacost),
+        health(static_cast<float>(maxhealth)),
+        mana(static_cast<float>(maxmana))
+        {
+        /*Main body of constructor*/
 }
 
 //get functions
@@ -48,12 +47,13 @@ int Character::GetNumberOfPotionsInInventorySlot(PotionType potiontype, PotionCo
 int Character::GetNumberOfPotionsInInventorySlot(int xinventory, int yinventory){
         return inventory[xinventory][yinventory];
 }
-
-//uses equation to get int based on potionsize:
-// SMALL -> 0, MEDIUM -> 1, BIG -> 2
-//   25  -> 0,   50   -> 1, 100 -> 2
 int Character::GetYCordForInventory(PotionCostAndSize potionsize){
-    return static_cast<int>( std::lround( std::log2( static_cast<float>(potionsize)/25.0f )));
+    switch(potionsize) {
+        case PotionCostAndSize::SMALL:  return 0;
+        case PotionCostAndSize::MEDIUM: return 1;
+        case PotionCostAndSize::BIG:    return 2;
+    }
+    return 0;
 }
 
 
