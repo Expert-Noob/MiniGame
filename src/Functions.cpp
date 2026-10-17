@@ -7,31 +7,45 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <memory>
+#include <chrono>
+#include <thread>
+
+//Sleep function
+void sleepFunc(int time){
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
+}
+
+void toLowerCase(std::string& text){
+    for(int i = 0; i < text.length(); i++){
+        if(static_cast<int>(text[i]) < 97){
+            
+        }
+    }
+}
 
 //asks user to pick a character
 //returns pointer to Character on a heap
-Character* InitializeCharacter(){
+std::unique_ptr<Character> InitializeCharacter(){
     while(true){
-        std::string choose;
-        std::getline(std::cin, choose);
+        std::string characterName;
+        std::getline(std::cin, characterName);
+        
+        toLowerCase(characterName);
         
         //parameters for constructor: 
         //maxhealth, maxmana, damage, spelldamage, manacost
-        if(choose == "Axe"){
-            Character* characterPtr = new Character(200, 100, 20.0f, 30.0f, 50);
-            return characterPtr;
+        if(characterName == "axe"){
+            return std::make_unique<Character>(200, 100, 20.0f, 30.0f, 50);
         }
-        else if(choose == "Lina"){
-            Character* characterPtr = new Character(100, 150, 40.0f, 80.0f, 100);
-            return characterPtr;
+        else if(characterName == "lina"){
+            return std::make_unique<Character>(100, 150, 40.0f, 80.0f, 100);
         }
-        else if(choose == "Rubick"){
-            Character* characterPtr = new Character(150, 200, 10.0f, 50.0f, 60);
-            return characterPtr;
+        else if(characterName == "rubick"){
+            return std::make_unique<Character>(150, 200, 10.0f, 50.0f, 60);
         }
-        else if(choose == "Ursa"){
-            Character* characterPtr = new Character(175, 125, 30.0f, 40.0f, 35);
-            return characterPtr;
+        else if(characterName == "ursa"){
+            return std::make_unique<Character>(175, 125, 30.0f, 40.0f, 35);
         }
         else{
             std::cout << "Invalid input!\n\nEnter again: ";
@@ -40,39 +54,63 @@ Character* InitializeCharacter(){
 }
 
 //initializes random character for bot 
-Character* InitializeBot(){
+std::unique_ptr<Character> InitializeBot(){
     static std::random_device rd;
     static std::mt19937 gen(rd());
 
     std::uniform_int_distribution<> distrib(1, 4);
     int random_num = distrib(gen);
 
-    Character* botPtr = nullptr;
-
     //parameters for constructor: 
     //maxhealth, maxmana, damage, spelldamage, manacost
     if(random_num == 1){
-        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
+        return std::make_unique<Character>(200, 100, 20.0f, 30.0f, 50);
     }
     else if(random_num == 2){
-        botPtr = new Character(100, 150, 40.0f, 80.0f, 150);
+        return std::make_unique<Character>(100, 150, 40.0f, 80.0f, 150);
     }
     else if(random_num == 3){
-        botPtr = new Character(150, 200, 10.0f, 50.0f, 60);
+        return std::make_unique<Character>(150, 200, 10.0f, 50.0f, 60);
     }
     else if(random_num == 4){
-        botPtr = new Character(175, 125, 30.0f, 40.0f, 35);
+        return std::make_unique<Character>(175, 125, 30.0f, 40.0f, 35);
     }
     else{
         std::cout << "Error!" << '\n';
-        botPtr = new Character(200, 100, 20.0f, 30.0f, 50);
+        return std::make_unique<Character>(200, 100, 20.0f, 30.0f, 50);
     }
+}
 
-    botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
-    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
-    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+void GameLoop(Character* character){
+    int Roundcounter = 1;
 
-    return botPtr;
+    while(character->GetHealth() != 0){
+        BuyPotionChooseFunc(character);
+
+        std::unique_ptr<Character> bot = InitializeBot();
+        BuyPotionsForBot(bot.get());
+
+        std::cout << "Round " << Roundcounter << "\n\n";
+
+        while(bot->GetHealth() != 0 && character->GetHealth() != 0){
+            CheckAndPerformMove(character, bot.get());
+            PrintStats(character, bot.get());
+
+            if(bot->GetHealth() == 0){
+                std::cout << "You won\n" << '\n';
+                character->GiveMoney(150);
+
+                Roundcounter += 1;
+
+                break;
+            }
+            else{
+                std::cout << "Bot's move: " << '\n';
+                BotMove(bot.get(), character);
+                PrintStats(character, bot.get());
+            }
+        }
+    }
 }
 
 void BuyPotionChooseFunc(Character* characterPtr){
@@ -93,7 +131,7 @@ void BuyPotionChooseFunc(Character* characterPtr){
 
             std::cout << "You can enter the first letter of each word as a shortcut (e.g. BHP = Big_Hp_Potion)" << '\n';
             std::cout << "Enter what you want to buy: ";
-            PickPotion(characterPtr);
+            PickPotionToBuy(characterPtr);
 
             std::cout << '\n';
             PrintInventory(characterPtr);
@@ -105,7 +143,7 @@ void BuyPotionChooseFunc(Character* characterPtr){
     }
 }
 
-void PickPotion(Character* characterPtr){
+void PickPotionToBuy(Character* characterPtr){
     while(true){
         std::string itemname;
         std::getline(std::cin, itemname);
@@ -152,7 +190,13 @@ void PickPotion(Character* characterPtr){
     }
 }
 
-void DrinkPotionChooseFunc(Character* characterPtr){
+void BuyPotionsForBot(Character* botPtr){
+    botPtr->BuyPotion(PotionType::HPPOTION, PotionCostAndSize::MEDIUM);
+    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+    botPtr->BuyPotion(PotionType::MANAPOTION, PotionCostAndSize::SMALL);
+}
+
+void ChoosePotionToDrink(Character* characterPtr){
     while(true){
         std::string itemname;
         std::getline(std::cin, itemname);
@@ -224,7 +268,7 @@ void CheckAndPerformMove(Character* characterPtr, Character* characterPtrToDamag
             std::cout << "Which potion you want to use?" << '\n';
             PrintInventory(characterPtr);
             std::cout << "Enter: ";
-            DrinkPotionChooseFunc(characterPtr);
+            ChoosePotionToDrink(characterPtr);
             if(characterPtr->GetIsPotionDrank()){
                 break;
             }

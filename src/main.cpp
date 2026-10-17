@@ -6,6 +6,7 @@
 //std
 #include <iostream>
 #include <string>
+#include <memory>
 
 int main(){
 
@@ -13,40 +14,13 @@ int main(){
     std::cout << "Choose youre character" << '\n';
     printAllCharacters();
     std::cout << "Enter: ";
-    Character* character = InitializeCharacter();
+    
+    std::unique_ptr<Character> character = InitializeCharacter();
     std::cout << '\n';
 
-    int Roundcounter = 1;
-    while(character->GetHealth() != 0){
-        BuyPotionChooseFunc(character);
-    
-        Character* bot = InitializeBot();
-
-        std::cout << "Round " << Roundcounter << "\n\n";
-
-        while(bot->GetHealth() != 0 && character->GetHealth() != 0){
-            CheckAndPerformMove(character, bot);
-            PrintStats(character, bot);
-
-            if(bot->GetHealth() == 0){
-                std::cout << "You won\n" << '\n';
-                character->GiveMoney(150);
-
-                Roundcounter += 1;
-            }
-            else{
-                std::cout << "Bot's move: " << '\n';
-                BotMove(bot, character);
-                PrintStats(character, bot);
-            }
-        }
-
-        delete bot;
-    }
+    GameLoop(character.get());
 
     std::cout << "You lost :(" << '\n';
-
-    delete character;
 
     return 0;
 }

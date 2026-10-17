@@ -12,7 +12,7 @@ Character::Character(int maxhealth, int maxmana, float damage, float spelldamage
         spelldamage(spelldamage),
         manacost(manacost),
         health(static_cast<float>(maxhealth)),
-        mana(static_cast<float>(maxmana))
+        mana(static_cast<float>(maxmana))       
         {
         /*Main body of constructor*/
 }
